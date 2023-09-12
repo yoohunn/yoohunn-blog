@@ -24,11 +24,11 @@ export function RecommandPosts() {
           </li>
         ))}
       </ul>
-      <div className={'text-end'}>
-        <button className='mr-3 text-end text-sm font-medium px-3.5 py-2 rounded-full border border-white bg-white/80'>
+      <div className={'flex justify-end'}>
+        <button className='mr-3 h-12 aspect-square flex-center text-sm font-medium px-3.5 py-2 rounded-full border border-white bg-white/80'>
           {'>'}
         </button>
-        <button className='text-end text-sm font-medium px-3.5 py-2 rounded-full border border-white'>
+        <button className='h-12 aspect-square flex-center text-sm font-medium px-3.5 py-2 rounded-full border border-white'>
           =
         </button>
       </div>
