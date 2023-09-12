@@ -13,9 +13,9 @@ html, body {
 
 @layer components {
   .h1 {
-   @apply text-2xl font-semibold
+   @apply text-2xl font-semibold md:text-[42px]
   }
   .h2 {
-    @apply text-xl font-semibold
+    @apply text-xl font-semibold md:text-[26px]
   }
 }

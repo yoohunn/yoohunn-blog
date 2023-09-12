@@ -4,7 +4,7 @@ export function Tags() {
       {['All', 'Tags', 'Collections'].map((item) => (
         <li
           key={item}
-          className='h-9 px-3 flex-center rounded-lg bg-gray-100/60 border border-gray-200/50 text-sm'
+          className='h-9 px-3 flex-center rounded-lg bg-gray-100/60 border border-gray-200/50 text-sm md:text-base'
         >
           {item}
         </li>
