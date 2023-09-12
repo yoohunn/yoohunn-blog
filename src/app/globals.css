@@ -10,3 +10,12 @@ html, body {
   word-break: keep-all;
   word-wrap: break-word;
 }
+
+@layer components {
+  .h1 {
+   @apply text-2xl font-semibold
+  }
+  .h2 {
+    @apply text-xl font-semibold
+  }
+}
