@@ -1,7 +1,7 @@
 export function Collections() {
   return (
     <>
-      <div className='mt-12 md:mt-20 mb-4 md:mb-10 flex justify-between items-center pr-4'>
+      <div className='mt-12 md:mt-[6.5rem] mb-4 md:mb-10 flex justify-between items-center pr-4'>
         <h1 className='h1'>컬렉션</h1>
         <button className={'text-sm md:text-base font-medium text-gray-700'}>
           더보기

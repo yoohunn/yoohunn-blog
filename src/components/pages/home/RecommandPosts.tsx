@@ -16,7 +16,7 @@ export function RecommandPosts() {
           <Posts />
         </div>
       </section>
-      <section className='block md:hidden mt-12 md:mt-20 mr-4 bg-gray-100 rounded-2xl p-4'>
+      <section className='block md:hidden mt-12 md:mt-[6.5rem] mr-4 bg-gray-100 rounded-2xl p-4'>
         <Header />
         <Posts />
         <Buttons />
