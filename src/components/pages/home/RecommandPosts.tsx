@@ -27,7 +27,7 @@ export function RecommandPosts() {
 
 function Header() {
   return (
-    <div className='flex gap-4 md:gap-6 mb-7'>
+    <div className='flex gap-4 md:flex-row-reverse md:justify-between mb-7'>
       <div className='w-[100px] md:w-[90px] aspect-square rounded-lg md:rounded-xl bg-white'></div>
       <div className={'md:pt-1.5'}>
         <h1 className='mt-1 md:mb-4 h1'>추천 포스트</h1>
