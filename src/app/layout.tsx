@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { montserrat } from '@/app/fonts';
 import './globals.css';
+import { Header } from '@/components/common';
 
 export const metadata: Metadata = {
   title: { default: '연지 기술 블로그', template: '%s | Yoohunn' },
@@ -15,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={montserrat.variable}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

@@ -18,15 +18,7 @@ export default function PostPage({ params }: Props) {
   ];
 
   return (
-    <main className='px-4 pt-20'>
-      <section className='mb-5 relative w-full aspect-video rounded-2xl overflow-hidden'>
-        <Image
-          src={imgUrl || ''}
-          alt={'post-thumbnail'}
-          fill
-          className='object-cover'
-        />
-      </section>
+    <main className='px-4 pt-14'>
       <h1 className={'mb-5 text-[32px] font-semibold leading-snug'}>
         {heading}
       </h1>
@@ -52,6 +44,18 @@ export default function PostPage({ params }: Props) {
           </li>
         ))}
       </ul>
+
+      <section className='mb-5 relative w-full aspect-video rounded-2xl overflow-hidden'>
+        <Image
+          src={imgUrl || ''}
+          alt={'post-thumbnail'}
+          fill
+          className='object-cover'
+        />
+      </section>
     </main>
   );
 }
+
+// collection
+//  <section className={'rounded-2xl border w-full h-40'}>Next.js</section>

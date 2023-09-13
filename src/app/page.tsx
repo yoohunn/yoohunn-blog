@@ -10,7 +10,6 @@ import {
 export default function Home() {
   return (
     <main className='flex-col-center'>
-      <Header />
       <div className='w-full max-w-[1200px] pl-4 pb-20'>
         <Tags />
         <Collections />
