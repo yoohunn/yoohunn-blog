@@ -2,13 +2,13 @@ import { Post } from '@/model/posts';
 
 export const posts: Post[] = [
   {
-    heading: 'Next.js 13.4 Built-in Optimizations 활용하여 진행한 성능 최적화',
+    heading: 'Next.js 13.3 마이그레이션을 완료하며',
     description:
       'Next.js 13.4 Built-in Optimizations 활용하여 진행한 성능 최적화',
-    thumbnailKeyword: 'Optimizations',
-    colorType: 'green',
+    thumbnailKeyword: 'migration',
+    colorType: 'gray',
     createdAt: '2023.9.10',
-    imgUrl: '/img/posts/improvment.jpg',
+    imgUrl: '/img/posts/migration-2.jpg',
   },
   {
     heading: 'Next.js 오픈소스 예시코드를 13.3버전으로 마이그레이션 하기',
@@ -20,13 +20,13 @@ export const posts: Post[] = [
     imgUrl: '/img/posts/migration-1.jpg',
   },
   {
-    heading: 'Next.js 13.3 마이그레이션을 완료하며',
+    heading: 'Next.js 13.4 Built-in Optimizations 활용하여 진행한 성능 최적화',
     description:
       'Next.js 13.4 Built-in Optimizations 활용하여 진행한 성능 최적화',
-    thumbnailKeyword: 'migration',
-    colorType: 'gray',
+    thumbnailKeyword: 'Optimizations',
+    colorType: 'green',
     createdAt: '2023.9.10',
-    imgUrl: '/img/posts/migration-2.jpg',
+    imgUrl: '/img/posts/improvment.jpg',
   },
   {
     heading: '웹 접근성 75 → 90점으로 향상한 과정',

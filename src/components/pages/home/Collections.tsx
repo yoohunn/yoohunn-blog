@@ -18,7 +18,14 @@ export function Collections() {
                 'relative overflow-hidden w-[160px] md:w-[216px] aspect-square rounded-lg md:rounded-xl mb-2 md:mb-4'
               }
             >
-              <Image src={imageUrl} alt={title} fill />
+              <Image
+                src={imageUrl}
+                alt={title}
+                fill
+                priority
+                sizes='(max-width: 786px) 216px, 160px'
+                className='object-cover'
+              />
             </section>
 
             <section className='px-1 md:px-1'>
