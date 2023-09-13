@@ -45,7 +45,7 @@ export default function PostPage({ params }: Props) {
         ))}
       </ul>
 
-      <section className='mb-5 relative w-full aspect-video rounded-2xl overflow-hidden'>
+      <section className='mb-12 relative w-full aspect-video rounded-2xl overflow-hidden'>
         <Image
           src={imgUrl || ''}
           alt={'post-thumbnail'}
@@ -53,6 +53,8 @@ export default function PostPage({ params }: Props) {
           className='object-cover'
         />
       </section>
+
+      <section className={'border-y py-4 '}>Nextjs</section>
     </main>
   );
 }
