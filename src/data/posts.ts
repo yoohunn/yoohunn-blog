@@ -8,6 +8,7 @@ export const posts: Post[] = [
     thumbnailKeyword: 'Optimizations',
     colorType: 'green',
     createdAt: '2023.9.10',
+    imgUrl: '/img/posts/improvment.jpg',
   },
   {
     heading: 'Next.js 오픈소스 예시코드를 13.3버전으로 마이그레이션 하기',
@@ -16,6 +17,7 @@ export const posts: Post[] = [
     thumbnailKeyword: 'problem solving',
     colorType: 'yellow',
     createdAt: '2023.9.10',
+    imgUrl: '/img/posts/migration-1.jpg',
   },
   {
     heading: 'Next.js 13.3 마이그레이션을 완료하며',
@@ -24,6 +26,7 @@ export const posts: Post[] = [
     thumbnailKeyword: 'migration',
     colorType: 'gray',
     createdAt: '2023.9.10',
+    imgUrl: '/img/posts/migration-2.jpg',
   },
   {
     heading: '웹 접근성 75 → 90점으로 향상한 과정',

@@ -1,5 +1,7 @@
+import Image from 'next/image';
+import { BookOpenIcon } from '@heroicons/react/24/solid';
+
 import { posts } from '@/data/posts';
-import { colors } from '@/data/colors';
 
 export function Posts() {
   return (
@@ -12,27 +14,39 @@ export function Posts() {
       >
         {posts.map(
           (
-            { heading, description, thumbnailKeyword, createdAt, colorType },
+            {
+              heading,
+              description,
+              thumbnailKeyword,
+              createdAt,
+              colorType,
+              imgUrl,
+            },
             index,
           ) => (
             <li key={index}>
               <article className={'md:flex md:gap-6'}>
                 <section
-                  style={{ backgroundColor: colors['gray']['100'] }}
                   className={
-                    'mb-4 md:mb-0 flex pt-3 pl-2 w-full md:w-[216px] h-[200px] md:h-[216px] rounded-2xl'
+                    'relative mb-4 md:mb-0 flex w-full md:w-[216px] h-[200px] md:h-[216px] rounded-2xl'
                   }
                 >
-                  {/*<p*/}
-                  {/*  style={{*/}
-                  {/*    textShadow: `${colors['gray']['300']} 0px 0px 40px`,*/}
-                  {/*  }}*/}
-                  {/*  className={*/}
-                  {/*    'mb-4 md:mb-10 font-montserrat font-bold text-white text-[38px] leading-none uppercase'*/}
-                  {/*  }*/}
-                  {/*>*/}
-                  {/*  {thumbnailKeyword}*/}
-                  {/*</p>*/}
+                  {imgUrl ? (
+                    <Image
+                      src={imgUrl}
+                      alt={'post-thumbnail'}
+                      fill
+                      className={'object-cover rounded-2xl'}
+                    />
+                  ) : (
+                    <p
+                      className={
+                        'border w-full flex-center rounded-2xl bg-gray-100 text-white'
+                      }
+                    >
+                      <BookOpenIcon className={'w-[4.5rem] h-[4.5rem] '} />
+                    </p>
+                  )}
                 </section>
                 <section className='px-1 md:px-0 md:py-2.5'>
                   <h2 className={'mb-4 md:mb-6 h2'}>{heading}</h2>

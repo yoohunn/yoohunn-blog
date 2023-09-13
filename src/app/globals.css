@@ -19,3 +19,13 @@ html, body {
     @apply text-xl font-semibold md:text-[26px]
   }
 }
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
