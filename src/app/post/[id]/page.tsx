@@ -1,15 +1,21 @@
-import { posts } from '@/data/posts';
-import { tag } from 'postcss-selector-parser';
 import Image from 'next/image';
+
+import { posts } from '@/data/posts';
+import { getNotionPage } from '@/lib/notion';
+import { NotionPage } from '@/components/common';
 
 interface Props {
   params: { id: string };
 }
 
-export default function PostPage({ params }: Props) {
+export default async function PostPage({ params }: Props) {
   console.log(params.id);
+
   const post = posts[1];
-  const { heading, imgUrl, description, createdAt } = post;
+  const { heading, imgUrl, description, createdAt, notionUrl } = post;
+
+  const recordMap = await getNotionPage(notionUrl);
+
   const collectionTag = { id: 'collection-tag', title: 'nextjs' };
   const tags = [
     collectionTag,
@@ -59,6 +65,8 @@ export default function PostPage({ params }: Props) {
           className='object-cover'
         />
       </section>
+
+      <NotionPage recordMap={recordMap} />
     </main>
   );
 }

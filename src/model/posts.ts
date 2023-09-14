@@ -7,4 +7,5 @@ export type Post = {
   imgUrl?: string;
   thumbnailKeyword: string;
   colorType: ColorType;
+  notionUrl: string;
 };

@@ -1,0 +1,9 @@
+:root {
+  --notion-max-width: 768px
+}
+
+.notion {
+  font-family: 'Pretendard Variable', sans-serif;
+  padding-left: 0;
+  padding-right: 0;
+}
