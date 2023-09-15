@@ -9,7 +9,8 @@ export const posts: Post[] = [
     thumbnailKeyword: 'migration',
     colorType: 'gray',
     createdAt: '2023.9.10',
-    imgUrl: '/img/posts/migration-2.jpg',
+    imgUrl:
+      'https://images.unsplash.com/photo-1552291162-799c84751212?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
     notionUrl: '',
     tags: [
       { id: 'i', title: 'number' },
@@ -26,7 +27,8 @@ export const posts: Post[] = [
     thumbnailKeyword: 'problem solving',
     colorType: 'yellow',
     createdAt: '2023.9.10',
-    imgUrl: '/img/posts/migration-1.jpg',
+    imgUrl:
+      'https://images.unsplash.com/photo-1602410141957-ee70b4739066?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
     notionUrl: 'Next-js-13-3-e0e4b0da247342289d87e5a7513b3cc8?pvs=4',
     tags: [
       { id: 'i', title: 'number' },
@@ -43,7 +45,8 @@ export const posts: Post[] = [
     thumbnailKeyword: 'Optimizations',
     colorType: 'green',
     createdAt: '2023.9.10',
-    imgUrl: '/img/posts/improvment.jpg',
+    imgUrl:
+      'https://images.unsplash.com/photo-1690117670229-a114a6dd4ade?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1827&q=80',
     notionUrl: '',
     tags: [
       { id: 'i', title: 'number' },
