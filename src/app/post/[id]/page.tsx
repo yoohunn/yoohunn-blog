@@ -36,16 +36,10 @@ export default async function PostPage({ params }: Props) {
           </p>
         </div>
       </section>
-      <ul className='mb-4 md:mb-8 flex flex-wrap gap-0.5'>
+      <ul className='mb-4 md:mb-8 post-tag-container'>
         {tags.map(({ id, title }) => (
           <li key={id}>
-            <button
-              className={
-                'h-8 px-3 flex-center rounded-xl bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-green-50 hover:text-green-800'
-              }
-            >
-              {title}
-            </button>
+            <button className='post-tag'>{title}</button>
           </li>
         ))}
       </ul>
