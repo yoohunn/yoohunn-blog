@@ -15,7 +15,7 @@ export function Posts() {
         {posts.map(
           (
             {
-              heading,
+              title,
               description,
               thumbnailKeyword,
               createdAt,
@@ -49,7 +49,7 @@ export function Posts() {
                   )}
                 </section>
                 <section className='px-1 md:px-0 md:py-2.5'>
-                  <h2 className={'mb-4 md:mb-6 h2'}>{heading}</h2>
+                  <h2 className={'mb-4 md:mb-6 h2'}>{title}</h2>
                   <p className='mb-4 md:mb-6 text-gray-600 leading-[150%] md:text-lg'>
                     {description}
                   </p>

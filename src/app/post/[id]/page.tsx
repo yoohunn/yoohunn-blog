@@ -12,18 +12,11 @@ export default async function PostPage({ params }: Props) {
   console.log(params.id);
 
   const post = posts[1];
-  const { heading, imgUrl, description, createdAt, notionUrl } = post;
+  const { title, imgUrl, description, createdAt, notionUrl, tags } = post;
 
   const recordMap = await getNotionPage(notionUrl);
 
   const collectionTag = { id: 'collection-tag', title: 'nextjs' };
-  const tags = [
-    collectionTag,
-    { id: 'i', title: 'number' },
-    { id: 'd', title: 'string' },
-    { id: 'is', title: 'boolean' },
-    { id: 'ig', title: 'symbol' },
-  ];
 
   return (
     <main className='px-4 pt-16 md:pt-24 max-w-[48rem] mx-auto'>
@@ -32,7 +25,7 @@ export default async function PostPage({ params }: Props) {
           'mb-5 md:mb-8 text-[32px] md:text-[46px] font-semibold leading-snug'
         }
       >
-        {heading}
+        {title}
       </h1>
       <section className='mb-4 md:mb-8 flex-row-center gap-4'>
         <div className='w-12 h-12 rounded-full border' />

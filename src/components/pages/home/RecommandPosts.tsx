@@ -1,90 +1,29 @@
-import { posts } from '@/data/posts';
 import Image from 'next/image';
-import { Post } from '@/model/posts';
+import Link from 'next/link';
+
+import { posts } from '@/data/posts';
 
 export function RecommandPosts() {
   return (
     <>
-      <section className={'hidden md:flex mt-20 gap-6'}>
-        <div
-          className={
-            'shrink-0 overflow-hidden relative flex flex-col w-[404px] aspect-square rounded-2xl'
-          }
-        >
-          <div className='absolute inset-0 z-10 p-6 flex flex-col justify-between backdrop-blur-2xl text-white'>
-            <Header imgUrl={posts.at(0)?.imgUrl} />
-            <Buttons />
-          </div>
-          {
-            <div
-              className={'hidden md:block absolute inset-0 bg-white opacity-80'}
-            >
-              <Image
-                src={posts.at(0)?.imgUrl || ''}
-                alt={'post-thumbnail'}
-                fill
-                className='object-cover'
-              />
-            </div>
-          }
-        </div>
-        <div>
-          <Posts posts={posts} />
-        </div>
-      </section>
-      <section className='block md:hidden mt-12 md:mt-[6.5rem] mr-4 bg-gray-100 rounded-2xl p-4'>
-        <Header imgUrl={posts.at(0)?.imgUrl} />
-        <Posts posts={posts} />
-        <Buttons />
-      </section>
+      <h1 className='h1 mb-4 md:mb-10'>추천 포스트</h1>
+      {posts
+        .slice(0, 3)
+        .map(({ id, title, description, tags, imgUrl }, index) => (
+          <li key={index}>
+            <Link href={`/posts/${id}`}>
+              <h2 className={'h2'}>{title}</h2>
+              <PostThumbnail imgUrl={imgUrl} />
+              <p>{description}</p>
+              <ul>
+                {tags.map(({ id, title }) => (
+                  <li key={id}>{title}</li>
+                ))}
+              </ul>
+            </Link>
+          </li>
+        ))}
     </>
-  );
-}
-
-function Header({ imgUrl }: { imgUrl?: string }) {
-  return (
-    <div className='flex gap-4 md:flex-row-reverse md:justify-between mb-7'>
-      <div className='relative overflow-hidden drop-shadow-2xl w-[100px] md:w-[90px] aspect-square rounded-lg md:rounded-xl'>
-        {imgUrl ? (
-          <Image
-            src={imgUrl}
-            alt={'post-thumbnail'}
-            fill
-            className='object-cover'
-          />
-        ) : (
-          <DefaultThmbnail />
-        )}
-      </div>
-      <div className={'md:pt-1.5'}>
-        <h1 className='mt-1 md:mb-4 h1'>추천 포스트</h1>
-        <span className={'text-sm md:text-base md:ml-0.5 text-white/80'}>
-          뭐 요런요런 입니다 🙌
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function Posts({ posts }: { posts: Post[] }) {
-  return (
-    <ul className={'mb-7 md:mb-0 space-y-4 md:py-1.5'}>
-      {posts.slice(0, 3).map(({ heading, createdAt, imgUrl }, index) => (
-        <li key={index} className={'flex gap-4 md:gap-6'}>
-          <PostThumbnail imgUrl={imgUrl} />
-          <div>
-            <p
-              className={
-                'mt-0.5 mb-[1px] md:mb-4 text-sm md:text-xl font-medium line-clamp-2'
-              }
-            >
-              {heading}
-            </p>
-            <p className={'text-xs md:text-sm text-gray-600'}>{createdAt}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
   );
 }
 
