@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import { BookOpenIcon } from '@heroicons/react/24/solid';
 
-import { posts } from '@/data/posts';
+import type { Post } from '@/model/posts';
 
-export function Posts() {
+interface Props {
+  posts: Post[];
+}
+
+export function Posts({ posts }: Props) {
   return (
-    <section className='mt-12 md:mt-[180px]  pr-4'>
+    <section className='mt-12 md:mt-[180px] pr-4'>
       <h1 className='h1 mb-4 md:mb-10'>최근 포스트</h1>
-      <ul
-        className={
-          'flex flex-col gap-[6rem] mb-[6rem] md:gap-[3rem] md:mb-[5rem]'
-        }
-      >
+      <ul className='flex flex-col gap-[6rem] mb-[6rem] md:gap-[3rem] md:mb-[5rem]'>
         {posts.map(
           (
             {
@@ -22,7 +22,7 @@ export function Posts() {
               colorType,
               imgUrl,
             },
-            index,
+            index
           ) => (
             <li key={index}>
               <article className={'md:flex md:gap-6'}>
@@ -59,7 +59,7 @@ export function Posts() {
                 </section>
               </article>
             </li>
-          ),
+          )
         )}
       </ul>
       <button className='mb-7 w-full py-4 rounded-2xl'>More</button>

@@ -1,7 +1,11 @@
+import { getBase64 } from '@/lib/plaiceholder';
 import { posts } from '@/data/posts';
-import { Post } from '@/model/posts';
 
-export async function getPosts(): Promise<Post[]> {
-  const withBlur = posts;
-  return withBlur;
+export async function getPosts() {
+  const promises = posts.map(async (post) => {
+    const blurDataURL = await getBase64(post.imgUrl);
+    return { ...post, blurDataURL };
+  });
+
+  return await Promise.all(promises);
 }

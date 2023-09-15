@@ -10,6 +10,7 @@ export type Post = {
   colorType: ColorType;
   notionUrl: string;
   tags: PostTag[];
+  blurDataURL?: string;
 };
 
 export type PostTag = { id: string; title: string };
