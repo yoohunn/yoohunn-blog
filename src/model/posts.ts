@@ -1,4 +1,5 @@
 import { ColorType } from '@/types/color';
+import { Collection } from './collections';
 
 export type Post = {
   id: string;
@@ -10,7 +11,10 @@ export type Post = {
   colorType: ColorType;
   notionUrl: string;
   tags: PostTag[];
+  collection: Pick<Collection, 'id' | 'title'>;
+
   blurDataURL?: string;
+  notionRecordMap?: any;
 };
 
 export type PostTag = { id: string; title: string };

@@ -9,3 +9,14 @@ export async function getPosts() {
 
   return await Promise.all(promises);
 }
+
+export async function getPost(id: string) {
+  const post = posts.find((item) => item.id === id);
+
+  if (!post) {
+    return undefined;
+  }
+
+  const blurDataURL = await getBase64(post.imgUrl);
+  return { ...post, blurDataURL };
+}

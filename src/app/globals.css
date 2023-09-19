@@ -25,11 +25,11 @@ body {
   }
 
   .post-tag {
-    @apply h-8 px-3 flex-center rounded-xl bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-green-50 hover:text-green-800;
+    @apply py-2 px-4 flex-center rounded-full bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-green-50 hover:text-green-800;
   }
 
   .post-tag-container {
-    @apply flex flex-wrap gap-0.5;
+    @apply flex flex-wrap flex-center gap-2;
   }
 }
 

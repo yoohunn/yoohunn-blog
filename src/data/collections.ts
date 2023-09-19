@@ -3,7 +3,7 @@ import { Collection } from '@/model/collections';
 export const collections: Collection[] = [
   {
     id: 'nextjs',
-    title: 'Nextjs',
+    title: 'Next.js',
     imageUrl: '/img/collections/nextjs.jpg',
   },
   {
