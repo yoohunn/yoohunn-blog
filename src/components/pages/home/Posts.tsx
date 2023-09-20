@@ -23,22 +23,27 @@ export function Posts({ posts }: Props) {
               createdAt,
               colorType,
               imgUrl,
+              blurDataURL,
             },
-            index
+            index,
           ) => (
             <li key={index}>
               <Link href={`/posts/${id}`}>
                 <article className={'md:flex md:gap-6'}>
                   <section
                     className={
-                      'relative mb-4 md:mb-0 flex w-full md:w-[216px] h-[200px] md:h-[216px] rounded-2xl'
+                      'shrink-0 relative mb-4 md:mb-0 flex w-full md:w-[216px] h-[200px] md:h-[216px] rounded-2xl'
                     }
                   >
                     {imgUrl ? (
                       <Image
                         src={imgUrl}
                         alt={'post-thumbnail'}
+                        sizes='(min-width: 780px) 216px, (min-width: 620px) 548px, 93.33vw'
+                        priority
                         fill
+                        placeholder='blur'
+                        blurDataURL={blurDataURL}
                         className={'object-cover rounded-2xl'}
                       />
                     ) : (
@@ -63,7 +68,7 @@ export function Posts({ posts }: Props) {
                 </article>
               </Link>
             </li>
-          )
+          ),
         )}
       </ul>
     </section>
