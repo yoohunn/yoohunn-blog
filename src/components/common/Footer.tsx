@@ -5,7 +5,7 @@ import { ExternalAnchorOrLink } from '.';
 
 export function Footer() {
   return (
-    <footer className='border-t pt-20 pb-40'>
+    <footer className='border-t py-20 md:pb-40'>
       <div className='mx-auto w-full max-w-[75rem] px-4 md:px-6 flex-row-center gap-10'>
         <ExternalAnchorOrLink href='https://github.com/yoohunn'>
           <GithubIcon className='w-6 h-6' />

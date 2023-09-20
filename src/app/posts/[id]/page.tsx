@@ -32,10 +32,10 @@ export default async function PostPage({ params }: Props) {
   const recordMap = await getNotionPage(notionUrl);
 
   return (
-    <main className='flex-col-center px-4 pt-10 max-w-[56.25rem] mx-auto pb-20'>
+    <main className='flex-col-center px-4 pt-10 max-w-[56.25rem] mx-auto'>
       <h1
         className={
-          'mb-4 w-[90%] text-center text-[32px] md:text-[44px] font-semibold leading-snug'
+          'mb-4 w-full md:w-[90%] text-center text-[32px] md:text-[44px] font-semibold leading-snug'
         }
       >
         {title}
@@ -79,12 +79,12 @@ export default async function PostPage({ params }: Props) {
             <p className='md:text-lg font-medium text-gray-700'>Yoohunn</p>
           </div>
         </section>
-        <section className='flex justify-between'>
+        <section className='mb-10 flex justify-between'>
           <Link
             href='/'
-            className='flex-center gap-1 py-3 text-lg font-medium rounded-lg pr-6'
+            className='flex-center gap-1 py-3 md:text-lg font-medium rounded-lg pr-6'
           >
-            <ChevronLeftIcon className='w-5 h-5 text-gray-600 hover:bg-gray-100' />
+            <ChevronLeftIcon className='w-4 h-4 md:w-5 md:h-5 text-gray-600 hover:bg-gray-100' />
             홈으로
           </Link>
         </section>

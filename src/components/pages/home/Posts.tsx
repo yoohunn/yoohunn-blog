@@ -10,7 +10,7 @@ interface Props {
 
 export function Posts({ posts }: Props) {
   return (
-    <section className='pr-4'>
+    <section className='w-full'>
       <h1 className='h1 mb-4 md:mb-10'>최근 포스트</h1>
       <ul className='flex flex-col gap-[6rem] mb-[6rem] md:gap-[3rem] md:mb-[5rem]'>
         {posts.map(

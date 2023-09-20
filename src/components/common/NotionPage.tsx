@@ -36,7 +36,7 @@ interface Props extends WithClassName {
 
 export function NotionPage({ recordMap, className }: Props) {
   return (
-    <main className={clsx('mx-auto w-full md:pb-10 lg:pb-15', className)}>
+    <main className={clsx('mx-auto w-full px-2 md:pb-10 lg:pb-15', className)}>
       {recordMap ? (
         <NotionRenderer
           recordMap={recordMap}
