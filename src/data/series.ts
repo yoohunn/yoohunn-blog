@@ -1,6 +1,6 @@
-import { Collection } from '@/model/collections';
+import { Series } from '@/model/series';
 
-export const collections: Collection[] = [
+export const series: Series[] = [
   {
     id: 'nextjs',
     title: 'Next.js',

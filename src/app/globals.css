@@ -25,7 +25,7 @@ body {
   }
 
   .post-tag {
-    @apply py-2 px-4 flex-center rounded-full bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-green-50 hover:text-green-800;
+    @apply py-2 px-4 flex-center rounded-full bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-blue-50 hover:text-blue-900;
   }
 
   .post-tag-container {

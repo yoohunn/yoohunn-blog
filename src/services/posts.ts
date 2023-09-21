@@ -3,7 +3,7 @@ import { posts } from '@/data/posts';
 
 export async function getPosts() {
   const promises = posts.map(async (post) => {
-    const blurDataURL = await getBase64(post.imgUrl);
+    const blurDataURL = await getBase64(post.imageUrl);
     return { ...post, blurDataURL };
   });
 
@@ -17,6 +17,6 @@ export async function getPost(id: string) {
     return undefined;
   }
 
-  const blurDataURL = await getBase64(post.imgUrl);
+  const blurDataURL = await getBase64(post.imageUrl);
   return { ...post, blurDataURL };
 }

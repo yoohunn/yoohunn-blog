@@ -1,20 +1,18 @@
-import { ColorType } from '@/types/color';
-import { Collection } from './collections';
+import { Series } from './series';
 
 export type Post = {
   id: string;
-  createdAt: string;
+  slug: string;
+  publishedAt: string;
   title: string;
   description: string;
-  imgUrl?: string;
-  thumbnailKeyword: string;
-  colorType: ColorType;
+  imageUrl: string;
   notionUrl: string;
   tags: PostTag[];
-  collection: Pick<Collection, 'id' | 'title'>;
+  series: Pick<Series, 'id' | 'title'>;
 
   blurDataURL?: string;
   notionRecordMap?: any;
 };
 
-export type PostTag = { id: string; title: string };
+export type PostTag = { slug: string; title: string };

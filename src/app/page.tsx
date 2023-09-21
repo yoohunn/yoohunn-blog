@@ -1,11 +1,5 @@
-import { getPosts } from '@/api/posts';
-import {
-  Collections,
-  ContactMe,
-  Posts,
-  RecommandPosts,
-  Tags,
-} from '@/components/pages/home';
+import { getPosts } from '@/services/posts';
+import { Posts } from '@/components/pages/home';
 
 export default async function Home() {
   const posts = await getPosts();

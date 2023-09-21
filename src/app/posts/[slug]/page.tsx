@@ -1,38 +1,53 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
-import { getPost } from '@/api/posts';
+import { getPost } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
 import { NotionPage } from '@/components/common';
 
 interface Props {
-  params: { id: string };
+  params: { slug: string };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const post = await getPost(slug);
+  if (!post) {
+    return {};
+  }
+
+  const { title, description, imageUrl } = post;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = await getPost(params.id);
+  const post = await getPost(params.slug);
 
   if (!post) {
     notFound();
   }
 
-  const {
-    title,
-    imgUrl,
-    description,
-    createdAt,
-    notionUrl,
-    tags,
-    blurDataURL,
-    collection,
-  } = post;
+  const { title, imageUrl, notionUrl, tags, blurDataURL, series, publishedAt } =
+    post;
 
   const recordMap = await getNotionPage(notionUrl);
 
   return (
-    <main className='flex-col-center px-4 pt-10 max-w-[56.25rem] mx-auto'>
+    <main className='flex-col-center px-4 pt-12 max-w-[56.25rem] mx-auto'>
       <h1
         className={
           'mb-4 w-full md:w-[90%] text-center text-[32px] md:text-[44px] font-semibold leading-snug'
@@ -42,17 +57,17 @@ export default async function PostPage({ params }: Props) {
       </h1>
 
       <div className='mb-10 md:text-lg text-gray-500 space-x-1'>
-        <span>{collection.title}</span>
+        <span>{series.title}</span>
         <span>·</span>
-        <span>{createdAt}</span>
+        <span>{publishedAt}</span>
       </div>
 
-      <section className='mb-12 md:mb-16 relative w-full aspect-video rounded-2xl overflow-hidden'>
+      <section className='mb-12 md:mb-16 relative w-full aspect-[7/4] rounded-3xl overflow-hidden'>
         <Image
-          src={imgUrl || ''}
-          alt={'post-thumbnail'}
-          blurDataURL={blurDataURL}
+          src={imageUrl || ''}
+          alt='post-thumbnail'
           placeholder='blur'
+          blurDataURL={blurDataURL}
           fill
           className='object-cover'
           priority
@@ -60,8 +75,8 @@ export default async function PostPage({ params }: Props) {
       </section>
 
       <ul className='mb-12 post-tag-container'>
-        {tags.map(({ id, title }) => (
-          <li key={id}>
+        {tags.map(({ slug, title }) => (
+          <li key={slug}>
             <button className='post-tag'>{title}</button>
           </li>
         ))}
