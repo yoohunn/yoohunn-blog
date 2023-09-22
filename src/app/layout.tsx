@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { montserrat, poppins } from '@/app/fonts';
 
 import { Header, Footer } from '@/components/common';
+
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={`${montserrat.variable} ${poppins.variable}`}>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Header />
         {children}
         <Footer />

@@ -50,7 +50,7 @@ export default async function PostPage({ params }: Props) {
     <main className='flex-col-center px-4 pt-12 max-w-[56.25rem] mx-auto'>
       <h1
         className={
-          'mb-4 w-full md:w-[90%] text-center text-[32px] md:text-[44px] font-semibold leading-snug'
+          'mb-4 w-full md:w-[90%] text-center text-[32px] md:text-[44px] font-semibold leading-snug text-gray-800'
         }
       >
         {title}

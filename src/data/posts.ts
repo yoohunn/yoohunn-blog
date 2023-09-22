@@ -68,11 +68,11 @@ export const posts: Post[] = [
   {
     id: 'post-4',
     slug: 'post-4',
-    title: '웹 접근성 75 → 90점으로 향상한 과정',
+    title: '노션 디자인 확인용 페이지',
     description:
       'Next.js 13.4 Built-in Optimizations 활용하여 진행한 성능 최적화',
     publishedAt: '2023.9.10',
-    notionUrl: '',
+    notionUrl: '02a190a04391499f8758eed1f5c23166?pvs=4',
     tags: [
       { slug: 'i', title: 'number' },
       { slug: 'd', title: 'string' },
