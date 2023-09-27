@@ -22,7 +22,7 @@ export function Posts({ posts }: Props) {
             blurDataURL,
           }) => (
             <li key={slug}>
-              <Link href={`/posts/${slug}`}>
+              <Link href={`/post/${slug}`}>
                 <article className={'md:flex md:gap-6'}>
                   <section
                     className={

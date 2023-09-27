@@ -8,6 +8,7 @@ const postFields = groq`
   description,
   imageUrl,
   notionUrl,
+  blurDataURL,
   "author": author->{name, image, "slug": slug.current},
   tags[]->{name, "slug": slug.current},
   series[]->{title, description, "slug": slug.current, imageUrl},
@@ -43,5 +44,11 @@ export const postTagsQuery = groq`
   name,
   "slug": slug.current,
   "count": count(*[_type == "post" && references(^._id)])
+}
+`;
+
+export const postBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0]{
+  ${postFields}
 }
 `;

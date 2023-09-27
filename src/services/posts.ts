@@ -1,7 +1,7 @@
 import type { Post, PostTag } from '@/model/posts';
-import { getBase64 } from '@/lib/plaiceholder';
 import { client } from '@/lib/sanity.client';
 import {
+  postBySlugQuery,
   postsBySeriesQuery,
   postsByTagsQuery,
   postsQuery,
@@ -9,30 +9,8 @@ import {
   postTagsQuery,
 } from '@/lib/sanity.queries';
 
-import { posts } from '@/data/posts';
-
-export async function getMockPosts() {
-  const promises = posts.map(async (post) => {
-    const blurDataURL = await getBase64(post.imageUrl);
-    return { ...post, blurDataURL };
-  });
-
-  return await Promise.all(promises);
-}
-
-export async function getMockPost(id: string) {
-  const post = posts.find((item) => item.id === id);
-
-  if (!post) {
-    return undefined;
-  }
-
-  const blurDataURL = await getBase64(post.imageUrl);
-  return { ...post, blurDataURL };
-}
-
-export async function getPosts() {
-  return await client.fetch<Post[]>(postsQuery);
+export async function getPosts(params: { limit: number; page: number }) {
+  return await client.fetch<Post[]>(postsQuery, params);
 }
 
 export async function getPostsRecommended() {
@@ -49,4 +27,8 @@ export async function getPostByTags(slugs: string[]) {
 
 export async function getPostTags() {
   return await client.fetch<PostTag[]>(postTagsQuery);
+}
+
+export async function getPostBySlug(slug: string) {
+  return await client.fetch<Post>(postBySlugQuery, { slug });
 }

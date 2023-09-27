@@ -13,7 +13,7 @@ export type Post = {
   series: Pick<Series, 'id' | 'title'>;
   seriesOrder: number;
 
-  blurDataURL?: string;
+  blurDataURL: string;
   notionRecordMap?: any;
 };
 

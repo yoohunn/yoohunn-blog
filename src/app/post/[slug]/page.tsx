@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
-import { getPost } from '@/services/posts';
+import { getPostBySlug, getPostsRecommended } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
 import { NotionPage } from '@/components/common';
 
@@ -13,10 +13,18 @@ interface Props {
   params: { slug: string };
 }
 
+export async function generateStaticParams() {
+  const posts = await getPostsRecommended();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
 
-  const post = await getPost(slug);
+  const post = await getPostBySlug(slug);
   if (!post) {
     return {};
   }
@@ -35,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const post = await getPost(params.slug);
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -64,7 +72,7 @@ export default async function PostPage({ params }: Props) {
 
       <section className='mb-12 md:mb-16 relative w-full aspect-[7/4] rounded-3xl overflow-hidden'>
         <Image
-          src={imageUrl || ''}
+          src={imageUrl}
           alt='post-thumbnail'
           placeholder='blur'
           blurDataURL={blurDataURL}
