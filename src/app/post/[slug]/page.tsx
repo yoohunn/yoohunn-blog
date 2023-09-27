@@ -52,6 +52,8 @@ export default async function PostPage({ params }: Props) {
   const { title, imageUrl, notionUrl, tags, blurDataURL, series, publishedAt } =
     post;
 
+  console.log('🌟🌟🌟🌟post: ', post);
+
   const recordMap = await getNotionPage(notionUrl);
 
   return (
@@ -65,7 +67,7 @@ export default async function PostPage({ params }: Props) {
       </h1>
 
       <div className='mb-10 md:text-lg text-gray-500 space-x-1'>
-        <span>{series.title}</span>
+        <span>{series[0].title}</span>
         <span>·</span>
         <span>{publishedAt}</span>
       </div>
@@ -83,9 +85,9 @@ export default async function PostPage({ params }: Props) {
       </section>
 
       <ul className='mb-12 post-tag-container'>
-        {tags.map(({ slug, title }) => (
+        {tags.map(({ slug, name }) => (
           <li key={slug}>
-            <button className='post-tag'>{title}</button>
+            <button className='post-tag'>{name}</button>
           </li>
         ))}
       </ul>

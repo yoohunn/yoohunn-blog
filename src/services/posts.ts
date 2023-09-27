@@ -14,7 +14,11 @@ export async function getPosts(params: { limit: number; page: number }) {
 }
 
 export async function getPostsRecommended() {
-  return await client.fetch<Post[]>(postsRecommendedQuery);
+  return await client.fetch<Post[]>(
+    postsRecommendedQuery,
+    {},
+    { next: { revalidate: 60 * 10 } },
+  );
 }
 
 export async function getPostBySeries(slug: string) {
@@ -30,5 +34,9 @@ export async function getPostTags() {
 }
 
 export async function getPostBySlug(slug: string) {
-  return await client.fetch<Post>(postBySlugQuery, { slug });
+  return await client.fetch<Post>(
+    postBySlugQuery,
+    { slug },
+    { next: { revalidate: 60 * 10 } },
+  );
 }

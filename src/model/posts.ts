@@ -10,14 +10,14 @@ export type Post = {
   notionUrl: string;
   author: Author;
   tags: PostTag[];
-  series: Pick<Series, 'id' | 'title'>;
+  series: Pick<Series, 'slug' | 'title'>[];
   seriesOrder: number;
 
   blurDataURL: string;
   notionRecordMap?: any;
 };
 
-export type PostTag = { slug: string; title: string };
+export type PostTag = { slug: string; name: string };
 
 export type Author = {
   name: string;
