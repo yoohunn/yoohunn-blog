@@ -7,7 +7,7 @@ import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 import { getPostBySlug, getPostsRecommended } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
-import { NotionPage } from '@/components/common';
+import { NotionPage, PostTags } from '@/components/common';
 
 interface Props {
   params: { slug: string };
@@ -52,8 +52,6 @@ export default async function PostPage({ params }: Props) {
   const { title, imageUrl, notionUrl, tags, blurDataURL, series, publishedAt } =
     post;
 
-  console.log('🌟🌟🌟🌟post: ', post);
-
   const recordMap = await getNotionPage(notionUrl);
 
   return (
@@ -84,13 +82,7 @@ export default async function PostPage({ params }: Props) {
         />
       </section>
 
-      <ul className='mb-12 post-tag-container'>
-        {tags.map(({ slug, name }) => (
-          <li key={slug}>
-            <button className='post-tag'>{name}</button>
-          </li>
-        ))}
-      </ul>
+      <PostTags tags={tags} className='mb-12 justify-center' />
 
       <hr className='w-40 mb-12 border-gray-300' />
 

@@ -1,4 +1,7 @@
 import { redirect } from 'next/navigation';
+import { Posts } from '@/components/pages/home';
+import { getPostsPaginated } from '@/services/posts';
+import { PER_PAGE } from '@/constants/posts';
 
 interface Props {
   params: { page: string };
@@ -11,10 +14,14 @@ export default async function PaginatedPostPage({ params }: Props) {
     redirect('/posts');
   }
 
+  const posts = await getPostsPaginated({
+    limit: PER_PAGE,
+    page,
+  });
+
   return (
     <main>
-      <h2>PaginatedPostPage</h2>
-      <h1 className='h2'>{page}</h1>
+      <Posts posts={posts} />
     </main>
   );
 }

@@ -11,6 +11,7 @@ body {
   font-family: 'Pretendard Variable', sans-serif;
   word-break: keep-all;
   word-wrap: break-word;
+  @apply text-gray-900
 }
 
 @layer components {
@@ -22,12 +23,8 @@ body {
     @apply text-xl font-semibold md:text-[26px];
   }
 
-  .post-tag {
-    @apply py-2 px-4 flex-center rounded-full bg-gray-50 text-gray-700 text-sm md:text-base transform duration-150 hover:bg-blue-50 hover:text-blue-900;
-  }
-
-  .post-tag-container {
-    @apply flex flex-wrap flex-center gap-2;
+  .max-container {
+    @apply mx-auto px-4 md:px-6 lg:px-0 pb-20 w-full max-w-[56.25rem] lg:max-w-[1054px]
   }
 }
 

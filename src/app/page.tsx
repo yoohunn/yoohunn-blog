@@ -5,7 +5,8 @@ export default async function Home() {
   const posts = await getPostsRecommended();
 
   return (
-    <main className='flex-col-center mx-auto pt-10 md:pt-[120px] px-4 md:px-6 lg:px-0 pb-20 w-full max-w-[56.25rem] lg:max-w-[1054px]'>
+    <main className='max-container pt-10 md:pt-[120px]'>
+      <h1 className='h1 mb-4 md:mb-10'>최근 포스트</h1>
       <Posts posts={posts} />
     </main>
   );

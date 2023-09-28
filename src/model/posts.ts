@@ -1,4 +1,5 @@
-import { Series } from './series';
+import type { Series } from './series';
+import type { PostTag } from './post-tag';
 
 export type Post = {
   id: string;
@@ -16,8 +17,6 @@ export type Post = {
   blurDataURL: string;
   notionRecordMap?: any;
 };
-
-export type PostTag = { slug: string; name: string };
 
 export type Author = {
   name: string;
