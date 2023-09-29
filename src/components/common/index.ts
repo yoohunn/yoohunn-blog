@@ -7,3 +7,5 @@ export { PaginationItem } from './PaginationItem';
 export { PostTags } from './PostTags';
 export { Hr } from './Hr';
 export { ContactWith } from './ContactWith';
+export { Logo } from './Logo';
+export { Navbar } from './Navbar';

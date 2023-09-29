@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import { Logo } from '@/components/common/Logo';
+import { Logo, Navbar } from '@/components/common';
 
 export function Header() {
   return (
@@ -8,14 +7,7 @@ export function Header() {
     mx-auto flex items-center justify-between md:justify-start'
     >
       <Logo />
-      <nav className='ml-20 space-x-4 md:space-x-8 text-sm text-gray-500'>
-        <Link href={'/posts'} className='hover:text-gray-900'>
-          Posts
-        </Link>
-        <Link href={'/series'} className='hover:text-gray-900'>
-          Series
-        </Link>
-      </nav>
+      <Navbar />
     </header>
   );
 }
