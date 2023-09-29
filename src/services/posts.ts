@@ -10,11 +10,20 @@ import {
   postsRecommendedQuery,
   postsTotalCountQuery,
 } from '@/lib/sanity.queries';
+import { PER_PAGE } from '@/constants/posts';
 
 const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };
 
 export async function getPostsRecommended() {
   return await client.fetch<Post[]>(postsRecommendedQuery, {}, options);
+}
+
+export async function getPostsLatest() {
+  return await client.fetch<Post[]>(
+    postsPaginatedQuery,
+    { start: 0, end: PER_PAGE + 1 },
+    options,
+  );
 }
 
 export async function getPostsPaginated(params: {

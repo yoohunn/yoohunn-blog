@@ -5,3 +5,5 @@ export { ExternalAnchorOrLink } from './ExternalAnchorOrLink';
 export { Pagination } from './Pagination';
 export { PaginationItem } from './PaginationItem';
 export { PostTags } from './PostTags';
+export { Hr } from './Hr';
+export { ContactWith } from './ContactWith';

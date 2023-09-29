@@ -7,7 +7,7 @@ import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 import { getPostBySlug, getPostsRecommended } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
-import { NotionPage, PostTags } from '@/components/common';
+import { Hr, NotionPage, PostTags } from '@/components/common';
 
 interface Props {
   params: { slug: string };
@@ -84,7 +84,7 @@ export default async function PostPage({ params }: Props) {
 
       <PostTags tags={tags} className='mb-12 justify-center' />
 
-      <hr className='w-40 mb-12 border-gray-300' />
+      <Hr />
 
       <NotionPage recordMap={recordMap} />
 

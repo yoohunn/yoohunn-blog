@@ -10,7 +10,8 @@ export default async function PostsPaginatedLayout({ children }: WithChildren) {
 
   return (
     <main className='max-container'>
-      <PostTags tags={tags} className='mt-12 mb-16 justify-start' />
+      <h1 className='h1'>Posts</h1>
+      <PostTags tags={tags} className='mb-16 !justify-start' />
       {children}
       <Pagination
         totalItems={totalCount}

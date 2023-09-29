@@ -15,8 +15,10 @@ const postFields = groq`
   seriesOrder,
 `;
 
-export const postsTotalCountQuery = groq`
-count(*[_type == 'post'])
+export const postsRecommendedQuery = groq`
+*[_type == "post"] | order(publishedAt desc) [0...3]{
+  ${postFields}
+}
 `;
 
 export const postsPaginatedQuery = groq`
@@ -24,22 +26,20 @@ export const postsPaginatedQuery = groq`
   ${postFields}
 }`;
 
-export const postsRecommendedQuery = groq`
-*[_type == "post"]{
-  ${postFields}
-} | order(publishedAt desc)[0...4]
+export const postsTotalCountQuery = groq`
+count(*[_type == 'post'])
 `;
 
 export const postsBySeriesQuery = groq`
-*[_type == "post" && $slug in series[]->slug.current]{
+*[_type == "post" && $slug in series[]->slug.current] | order(publishedAt desc){
   ${postFields}
-} | order(publishedAt desc)
+}
 `;
 
 export const postsByTagsQuery = groq`
-*[_type == "post" && count((tags[]->slug.current)[@ in $slugs]) > 0]{
+*[_type == "post" && count((tags[]->slug.current)[@ in $slugs]) > 0] | order(publishedAt desc){
   ${postFields}
-} | order(publishedAt desc)
+}
 `;
 
 export const postTagsQuery = groq`
