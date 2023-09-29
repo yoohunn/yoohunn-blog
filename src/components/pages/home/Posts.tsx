@@ -11,7 +11,7 @@ interface Props extends WithClassName {
 export function Posts({ posts, title, className }: Props) {
   return (
     <section className={className}>
-      {title && <h1 className='h1'>{title}</h1>}
+      {title && <h1 className='h1 '>{title}</h1>}
       <ul className='w-full flex flex-col gap-[6rem] mb-[6rem] md:gap-[3rem] md:mb-[5rem]'>
         {posts.map(
           ({

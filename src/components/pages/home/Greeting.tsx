@@ -18,7 +18,7 @@ export function Greeting({ heading, subheading, greeting }: Props) {
         <ContactWith.email />
         <ContactWith.phone />
       </div>
-      <p className='mb-14 text-gray-500'>{greeting}</p>
+      <p className='mb-14 text-[15px] md:text-base text-gray-500'>{greeting}</p>
     </>
   );
 }

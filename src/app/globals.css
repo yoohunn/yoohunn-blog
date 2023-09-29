@@ -16,7 +16,7 @@ body {
 
 @layer components {
   .h1 {
-    @apply text-2xl font-semibold md:text-[42px] mt-16 mb-4 md:mb-10;
+    @apply text-2xl font-semibold md:text-[42px] mt-10 md:mt-16 mb-4 md:mb-10;
   }
 
   .h2 {
@@ -24,7 +24,7 @@ body {
   }
 
   .max-container {
-    @apply mx-auto px-4 md:px-6 lg:px-0 pb-20 w-full max-w-[56.25rem] lg:max-w-[1054px]
+    @apply mx-auto px-4 md:px-6 lg:px-0 md:pb-20 w-full max-w-[56.25rem] lg:max-w-[1054px]
   }
 }
 
