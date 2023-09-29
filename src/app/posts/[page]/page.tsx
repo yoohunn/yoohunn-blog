@@ -7,6 +7,12 @@ interface Props {
   params: { page: string };
 }
 
+const PRE_RENDER = 2;
+
+export async function generateStaticParams() {
+  return Array.from({ length: PRE_RENDER }).map((_, i) => ({ slug: i + 2 }));
+}
+
 export default async function PaginatedPostPage({ params }: Props) {
   const page = Number(params.page) || 1;
 
@@ -25,7 +31,3 @@ export default async function PaginatedPostPage({ params }: Props) {
     </main>
   );
 }
-
-/**
- * 1. page를 params로 받고 1인 경우는 posts로 리다이렉트한다.
- * */
