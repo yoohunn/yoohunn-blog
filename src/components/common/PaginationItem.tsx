@@ -16,7 +16,7 @@ export function PaginationItem({ href, pageNumber }: Props) {
     <Link
       href={href}
       className={`${
-        pageNumber === currentPage ? 'text-gray-900' : 'text-gray-500'
+        pageNumber === currentPage ? 'text-gray-900' : 'text-gray-400'
       } px-4 py-2 mx-1 rounded-full text-sm font-semibold no-underline`}
     >
       {pageNumber}

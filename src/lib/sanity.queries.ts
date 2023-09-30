@@ -13,6 +13,7 @@ const postFields = groq`
   tags[]->{name, "slug": slug.current},
   series[]->{title, description, "slug": slug.current, imageUrl},
   seriesOrder,
+  isRecommended,
 `;
 
 export const postsRecommendedQuery = groq`

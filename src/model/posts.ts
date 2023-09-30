@@ -8,13 +8,14 @@ export type Post = {
   publishedAt: string;
   description: string;
   imageUrl: string;
+  blurDataURL: string;
   notionUrl: string;
   author: Author;
   tags: PostTag[];
   series: Pick<Series, 'slug' | 'title'>[];
   seriesOrder: number;
+  isRecommended: boolean;
 
-  blurDataURL: string;
   notionRecordMap?: any;
 };
 
