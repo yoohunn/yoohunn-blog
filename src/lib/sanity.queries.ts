@@ -1,5 +1,20 @@
 import { groq } from 'next-sanity';
 
+const tagFields = groq`
+  name,
+  "slug": slug.current,
+  "count": count(*[_type == "post" && references(^._id)])
+`;
+
+const seriesFields = groq`
+  "id": _id,
+  "slug": slug.current,
+  title,
+  description,
+  imageUrl,
+  "count": count(*[_type == "post" && references(^._id)])
+`;
+
 const postFields = groq`
   "id": _id,
   "slug": slug.current,
@@ -10,8 +25,8 @@ const postFields = groq`
   notionUrl,
   blurDataURL,
   "author": author->{name, image, "slug": slug.current},
-  tags[]->{name, "slug": slug.current},
-  series[]->{title, description, "slug": slug.current, imageUrl},
+  tags[]->{${tagFields}},
+  series[]->{${seriesFields}},
   seriesOrder,
   isRecommended,
 `;
@@ -43,20 +58,6 @@ export const postsByTagsQuery = groq`
 }
 `;
 
-export const postTagsQuery = groq`
-*[_type == "tag"]{
-  name,
-  "slug": slug.current,
-  "count": count(*[_type == "post" && references(^._id)])
-}
-`;
-
-export const postBySlugQuery = groq`
-*[_type == "post" && slug.current == $slug][0]{
-  ${postFields}
-}
-`;
-
 /* Better approach for Pagination in Sanity
  * 나는 ISR 페이지네이션을 사용해서 이 방법이 적합하지 않았지만 테스트해보니 좋았음... 못써서 아까운 코드
  * https://www.sanity.io/docs/paginating-with-groq#99e2366d34f5
@@ -69,3 +70,25 @@ export const postBySlugQuery = groq`
 //   ${postFields}
 // }
 // `;
+
+// post
+export const postBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0]{
+  ${postFields}
+}
+`;
+
+// tag
+export const postTagsQuery = groq`
+*[_type == "tag"]{
+  ${tagFields}
+}
+`;
+
+// series
+
+export const seriesQuery = groq`
+*[_type == "series"]{
+  ${seriesFields}
+}
+`;

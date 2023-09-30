@@ -1,6 +1,6 @@
 import { getPostsLatest, getPostsRecommended } from '@/services/posts';
-import { Greeting, MoreLinkWithDimmer, Posts } from '@/components/pages/home';
-import { Hr } from '@/components/common';
+import { Greeting, WithDimmerMoreLink } from '@/components/pages/home';
+import { Hr, Posts } from '@/components/common';
 
 export default async function Home() {
   const [recommended, latest] = await Promise.all([
@@ -20,10 +20,9 @@ export default async function Home() {
 
       <Posts title='추천 포스트' posts={recommended} />
 
-      <div className='relative'>
+      <WithDimmerMoreLink>
         <Posts title='최근 포스트' posts={latest} className='md:mt-[8rem]' />
-        <MoreLinkWithDimmer />
-      </div>
+      </WithDimmerMoreLink>
     </main>
   );
 }

@@ -11,6 +11,7 @@ import {
   postsTotalCountQuery,
 } from '@/lib/sanity.queries';
 import { PER_PAGE } from '@/constants/posts';
+import { Series } from '@/model/series';
 
 const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };
 
@@ -46,11 +47,11 @@ export async function getPostsTotalCount() {
   return await client.fetch<number>(postsTotalCountQuery, {}, options);
 }
 
-export async function getPostBySeries(slug: string) {
+export async function getPostsBySeries(slug: string) {
   return await client.fetch<Post[]>(postsBySeriesQuery, { slug }, options);
 }
 
-export async function getPostByTags(slugs: string[]) {
+export async function getPostsByTags(slugs: string[]) {
   return await client.fetch<Post[]>(postsByTagsQuery, { slugs }, options);
 }
 

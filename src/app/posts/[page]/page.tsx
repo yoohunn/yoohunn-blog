@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
-import { Posts } from '@/components/pages/home';
+
 import { getPostsPaginated } from '@/services/posts';
 import { PER_PAGE } from '@/constants/posts';
+import { Posts } from '@/components/common';
 
 interface Props {
   params: { page: string };

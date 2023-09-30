@@ -1,8 +1,8 @@
-import { PostTags } from '@/components/common';
-import { getPostTags } from '@/services/post-tag';
-import { getPostByTags, getPostsRecommended } from '@/services/posts';
-import { Posts } from '@/components/pages/home';
 import { notFound } from 'next/navigation';
+
+import { getPostTags } from '@/services/post-tag';
+import { getPostsByTags } from '@/services/posts';
+import { Posts, PostTags } from '@/components/common';
 
 interface Props {
   params: {
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 export default async function PostsByTagPage({ params }: Props) {
   const [tags, posts] = await Promise.all([
     getPostTags(),
-    getPostByTags([params.slug]),
+    getPostsByTags([params.slug]),
   ]);
 
   const tag = tags.find((i) => i.slug === params.slug);

@@ -1,6 +1,6 @@
 import { getPostsPaginated } from '@/services/posts';
 import { PER_PAGE } from '@/constants/posts';
-import { Posts } from '@/components/pages/home';
+import { Posts } from '@/components/common';
 
 const page = 1;
 

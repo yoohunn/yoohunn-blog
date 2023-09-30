@@ -12,7 +12,7 @@ export type Post = {
   notionUrl: string;
   author: Author;
   tags: PostTag[];
-  series: Pick<Series, 'slug' | 'title'>[];
+  series: Series[];
   seriesOrder: number;
   isRecommended: boolean;
 

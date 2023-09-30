@@ -9,3 +9,8 @@ export { Hr } from './Hr';
 export { ContactWith } from './ContactWith';
 export { Logo } from './Logo';
 export { Navbar } from './Navbar';
+export { Series } from './Series';
+export { Posts } from './Posts';
+export { SeriesPost } from './SeriesPost';
+export { SeriesCard } from './SeriesCard';
+export { SeriesSorter } from './SeriesSorter';
