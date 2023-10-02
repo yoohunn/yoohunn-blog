@@ -44,9 +44,13 @@ const config: Config = {
         montserrat: ['var(--font-montserrat)'],
         poppins: ['var(--font-poppins)'],
       },
+      containers: {
+        'post-md': '720px',
+      },
     },
   },
   plugins: [
+    require('@tailwindcss/container-queries'),
     plugin(function ({ addUtilities, addComponents, theme }) {
       addUtilities({
         '.flex-center': {

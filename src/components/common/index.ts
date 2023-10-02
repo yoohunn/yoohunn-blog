@@ -11,6 +11,7 @@ export { Logo } from './Logo';
 export { Navbar } from './Navbar';
 export { Series } from './Series';
 export { Posts } from './Posts';
+export { Post } from './Post';
 export { SeriesPost } from './SeriesPost';
 export { SeriesCard } from './SeriesCard';
 export { SeriesSorter } from './SeriesSorter';
