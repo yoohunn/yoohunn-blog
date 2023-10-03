@@ -7,7 +7,7 @@ import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
 import { getPostBySlug, getPostsRecommended } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
-import { Hr, NotionPage, Post, PostTags } from '@/components/common';
+import { Hr, NotionPage, PostTags } from '@/components/common';
 import { RelatedSeries } from '@/components/pages/post';
 
 interface Props {
@@ -52,17 +52,8 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const {
-    title,
-    imageUrl,
-    notionUrl,
-    tags,
-    imageBlurHash,
-    series,
-    publishedAt,
-  } = post;
-
-  console.log('🌟🌟🌟🌟series: ', post);
+  const { title, imageUrl, notionUrl, tags, blurDataURL, series, publishedAt } =
+    post;
 
   const recordMap = await getNotionPage(notionUrl);
 
@@ -93,7 +84,7 @@ export default async function PostPage({ params }: Props) {
             src={imageUrl}
             alt='post-thumbnail'
             placeholder='blur'
-            blurDataURL={imageBlurHash}
+            blurDataURL={blurDataURL}
             fill
             className='object-cover'
             priority

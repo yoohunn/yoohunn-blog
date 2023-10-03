@@ -5,5 +5,5 @@ export type Series = {
   description: string | null;
   count: number;
   imageUrl: string;
-  imageBlurHash: string;
+  blurDataURL: string;
 };

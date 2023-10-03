@@ -12,7 +12,7 @@ const seriesFields = groq`
   title,
   description,
   "imageUrl": image.asset->url,
-  "imageBlurHash": image.asset->metadata.lqip,
+  "blurDataURL": image.asset->metadata.lqip,
   "count": count(*[_type == "post" && references(^._id)])
 `;
 
@@ -24,7 +24,7 @@ const postFields = groq`
   description,
   notionUrl,
   "imageUrl": image.asset->url,
-  "imageBlurHash": image.asset->metadata.lqip,
+  "blurDataURL": image.asset->metadata.lqip,
   "author": author->{name, image, "slug": slug.current},
   tags[]->{${tagFields}},
   series->{${seriesFields}},

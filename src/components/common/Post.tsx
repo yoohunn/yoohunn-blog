@@ -7,8 +7,7 @@ interface Props {
 }
 
 export function Post({ post }: Props) {
-  const { slug, title, description, publishedAt, imageUrl, imageBlurHash } =
-    post;
+  const { slug, title, description, publishedAt, imageUrl, blurDataURL } = post;
 
   return (
     <Link href={`/post/${slug}`} className='w-full'>
@@ -26,7 +25,7 @@ export function Post({ post }: Props) {
               priority
               fill
               placeholder='blur'
-              blurDataURL={imageBlurHash}
+              blurDataURL={blurDataURL}
               className={'object-cover rounded-2xl'}
             />
           </section>

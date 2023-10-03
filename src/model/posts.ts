@@ -1,5 +1,6 @@
 import type { Series } from './series';
 import type { PostTag } from './post-tag';
+import { getblurDataURL } from '@/services/image';
 
 export type Post = {
   id: string;
@@ -8,7 +9,7 @@ export type Post = {
   publishedAt: string;
   description: string;
   imageUrl: string;
-  imageBlurHash: string;
+  blurDataURL: string;
   notionUrl: string;
   author: Author;
   tags: PostTag[];

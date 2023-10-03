@@ -6,14 +6,14 @@ import { BookShape, bookShapeId } from '@/components/icon/BookShape';
 
 interface Props extends WithClassName {
   imageUrl: string;
-  imageBlurHash?: string;
+  blurDataURL?: string;
   count?: number;
   firstPostHref?: string;
 }
 
 export async function SeriesCard({
   imageUrl,
-  imageBlurHash,
+  blurDataURL,
   count,
   className,
   firstPostHref,
@@ -27,7 +27,7 @@ export async function SeriesCard({
         src={imageUrl}
         alt='post-thumbnail'
         // placeholder='blur'
-        // blurDataURL={imageBlurHash}
+        // blurDataURL={blurDataURL}
         fill
         className='object-cover'
         priority
