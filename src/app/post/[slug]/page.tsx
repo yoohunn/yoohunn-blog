@@ -3,12 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { ChevronLeftIcon } from '@heroicons/react/24/solid';
-
 import { getPostBySlug, getPostsRecommended } from '@/services/posts';
 import { getNotionPage } from '@/lib/notion';
 import { Hr, NotionPage, PostTags } from '@/components/common';
-import { RelatedSeries } from '@/components/pages/post';
+import { PostNav, RelatedSeries } from '@/components/pages/post';
 
 interface Props {
   params: { slug: string };
@@ -132,6 +130,8 @@ export default async function PostPage({ params }: Props) {
           홈으로
         </Link>
       </section>
+
+      <PostNav nextHref={''} prevHref={''} seriesHref={''} />
     </main>
   );
 }
