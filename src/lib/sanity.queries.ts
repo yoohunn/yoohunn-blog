@@ -1,36 +1,5 @@
 import { groq } from 'next-sanity';
-
-const tagFields = groq`
-  name,
-  "slug": slug.current,
-  "count": count(*[_type == "post" && references(^._id)])
-`;
-
-const seriesFields = groq`
-  "id": _id,
-  "slug": slug.current,
-  title,
-  description,
-  "imageUrl": image.asset->url,
-  "blurDataURL": image.asset->metadata.lqip,
-  "count": count(*[_type == "post" && references(^._id)])
-`;
-
-const postFields = groq`
-  "id": _id,
-  "slug": slug.current,
-  title,
-  publishedAt,
-  description,
-  notionUrl,
-  "imageUrl": image.asset->url,
-  "blurDataURL": image.asset->metadata.lqip,
-  "author": author->{name, image, "slug": slug.current},
-  tags[]->{${tagFields}},
-  series->{${seriesFields}},
-  seriesOrder,
-  isRecommended,
-`;
+import { postFields, seriesFields, tagFields } from '@/lib/sanity.fields';
 
 export const postsRecommendedQuery = groq`
 *[_type == "post"] | order(publishedAt desc) [0...3]{
@@ -72,21 +41,17 @@ export const postsByTagsQuery = groq`
 // }
 // `;
 
-// post
 export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0]{
   ${postFields}
 }
 `;
 
-// tag
 export const postTagsQuery = groq`
 *[_type == "tag"]{
   ${tagFields}
 }
 `;
-
-// series
 
 export const seriesQuery = groq`
 *[_type == "series"]{
