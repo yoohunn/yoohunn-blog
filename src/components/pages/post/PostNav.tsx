@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useScroll } from 'framer-motion';
 import { Popover, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
@@ -16,7 +18,31 @@ interface Props {
   prevHref: string;
 }
 
+const SHOWING_HEIGHT = 200;
+
 export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
+  const { scrollY } = useScroll();
+
+  const [isShowing, setIsShowing] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const scrollHeight = scrollY.get();
+
+      const isValidShowing =
+        (scrollHeight <= SHOWING_HEIGHT && !isShowing) ||
+        (scrollHeight > SHOWING_HEIGHT && isShowing);
+
+      if (isValidShowing) {
+        return;
+      }
+
+      scrollHeight > SHOWING_HEIGHT //
+        ? setIsShowing(true)
+        : setIsShowing(false);
+    });
+  }, [isShowing]);
+
   return (
     <Popover
       as='nav'
@@ -46,16 +72,18 @@ export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
             </Popover.Panel>
           </WithTransition>
 
-          <Popover.Button
-            className='text-gray-600 p-3.5 bg-white rounded-full border border-gray-100 z-[70]
+          <WithButtonTransition isShowing={isShowing}>
+            <Popover.Button
+              className='text-gray-600 p-3.5 bg-white rounded-full border border-gray-100 z-[70]
             focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'
-          >
-            {open ? (
-              <XMarkIcon className='w-6 h-6' />
-            ) : (
-              <Bars3Icon className='w-6 h-6' />
-            )}
-          </Popover.Button>
+            >
+              {open ? (
+                <XMarkIcon className='w-6 h-6' />
+              ) : (
+                <Bars3Icon className='w-6 h-6' />
+              )}
+            </Popover.Button>
+          </WithButtonTransition>
         </>
       )}
     </Popover>
@@ -76,6 +104,29 @@ function WithTransition({ children }: WithChildren) {
       leave='transition duration-75 ease-in-out'
       leaveFrom='transform translate-y-0 opacity-100'
       leaveTo='transform translate-y-2 opacity-0'
+    >
+      {children}
+    </Transition>
+  );
+}
+
+interface WithButtonTransitionProps extends WithChildren {
+  isShowing: boolean;
+}
+
+function WithButtonTransition({
+  isShowing,
+  children,
+}: WithButtonTransitionProps) {
+  return (
+    <Transition
+      show={isShowing}
+      enter='transition duration-500 ease-in-out'
+      enterFrom='transform translate-y-4 opacity-0'
+      enterTo='transform translate-y-0 opacity-100'
+      leave='transition duration-300 ease-in-out'
+      leaveFrom='transform translate-y-0 opacity-100'
+      leaveTo='transform translate-y-4 opacity-0'
     >
       {children}
     </Transition>
