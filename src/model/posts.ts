@@ -1,6 +1,5 @@
 import type { Series } from './series';
 import type { PostTag } from './post-tag';
-import { getblurDataURL } from '@/services/image';
 
 export type Post = {
   id: string;
@@ -23,5 +22,5 @@ export type Post = {
 export type Author = {
   name: string;
   slug: string;
-  image: any;
+  imageUrl: string;
 };

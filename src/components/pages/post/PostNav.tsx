@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import Link from 'next/link';
 import { Popover, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
@@ -17,11 +17,6 @@ interface Props {
 }
 
 export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
-  const menuContainerClass =
-    'bg-white rounded-xl p-4 pr-6 border border-gray-100';
-  const menuItemClass = 'flex-row-center gap-2';
-  const iconClass = 'w-4 h-4 text-gray-500';
-
   return (
     <Popover
       as='nav'
@@ -31,31 +26,34 @@ export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
         <>
           <WithTransition>
             <Popover.Panel>
-              <ul className={`${menuContainerClass} mb-2 space-y-4`}>
-                <li className={menuItemClass}>
+              <div className={`${menuContainerClass} mb-2 space-y-4`}>
+                <Link href={nextHref} className={menuItemClass}>
                   <ArrowRightCircleIcon className={iconClass} />
                   다음글 보기
-                </li>
-                <li className={menuItemClass}>
+                </Link>
+                <Link href={prevHref} className={menuItemClass}>
                   <ArrowLeftCircleIcon className={iconClass} />
                   이전글 보기
-                </li>
-              </ul>
-              <div className={`${menuContainerClass} ${menuItemClass}`}>
+                </Link>
+              </div>
+              <Link
+                href={seriesHref}
+                className={`${menuContainerClass} ${menuItemClass}`}
+              >
                 <BookOpenIcon className={iconClass} />
                 시리즈 보기
-              </div>
+              </Link>
             </Popover.Panel>
           </WithTransition>
 
           <Popover.Button
-            className='text-gray-700 p-3 bg-white rounded-full border border-gray-100 z-[70]
+            className='text-gray-600 p-3.5 bg-white rounded-full border border-gray-100 z-[70]
             focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'
           >
             {open ? (
-              <XMarkIcon className='w-5 h-5' />
+              <XMarkIcon className='w-6 h-6' />
             ) : (
-              <Bars3Icon className='w-5 h-5' />
+              <Bars3Icon className='w-6 h-6' />
             )}
           </Popover.Button>
         </>
@@ -63,6 +61,11 @@ export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
     </Popover>
   );
 }
+
+const menuContainerClass =
+  'bg-white rounded-xl p-4 pr-7 border border-gray-100';
+const menuItemClass = 'flex-row-center gap-2';
+const iconClass = 'w-4 h-4 text-gray-400';
 
 function WithTransition({ children }: WithChildren) {
   return (
@@ -76,21 +79,5 @@ function WithTransition({ children }: WithChildren) {
     >
       {children}
     </Transition>
-  );
-}
-
-function TransitionOverlay() {
-  return (
-    <Transition.Child
-      as={Fragment}
-      enter='ease-out duration-300'
-      enterFrom='opacity-0'
-      enterTo='opacity-100'
-      leave='ease-in duration-200'
-      leaveFrom='opacity-100'
-      leaveTo='opacity-0'
-    >
-      <div className='fixed inset-0 bg-black bg-opacity-30' />
-    </Transition.Child>
   );
 }

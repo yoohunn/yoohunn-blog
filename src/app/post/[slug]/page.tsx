@@ -50,8 +50,16 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const { title, imageUrl, notionUrl, tags, blurDataURL, series, publishedAt } =
-    post;
+  const {
+    title,
+    imageUrl,
+    notionUrl,
+    tags,
+    blurDataURL,
+    series,
+    publishedAt,
+    author,
+  } = post;
 
   const recordMap = await getNotionPage(notionUrl);
 
@@ -131,7 +139,9 @@ export default async function PostPage({ params }: Props) {
         </Link>
       </section>
 
-      <PostNav nextHref={''} prevHref={''} seriesHref={''} />
+      <div className='block md:hidden'>
+        <PostNav nextHref={''} prevHref={''} seriesHref={''} />
+      </div>
     </main>
   );
 }
