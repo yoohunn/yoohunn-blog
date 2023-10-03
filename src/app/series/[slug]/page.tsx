@@ -1,15 +1,24 @@
 import Link from 'next/link';
 
 import { getPostsBySeries } from '@/services/posts';
+import { getSeries } from '@/services/series';
 import { SeriesPost, SeriesSorter, SeriesCard } from '@/components/common';
 
 interface Props {
   params: { slug: string };
 }
 
+export async function generateStaticParams() {
+  const series = await getSeries();
+
+  return series.map((item) => ({
+    slug: item.slug,
+  }));
+}
+
 export default async function SeriesPage({ params }: Props) {
   const posts = await getPostsBySeries(params.slug);
-  const series = posts[0]?.series.find((item) => item.slug === params.slug);
+  const series = posts.at(0)?.series;
 
   if (!series) {
     return <p>no post in series</p>;

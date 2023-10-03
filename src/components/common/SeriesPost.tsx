@@ -6,7 +6,8 @@ interface Props {
 }
 
 export function SeriesPost({ post }: Props) {
-  const { slug, title, description, publishedAt, imageUrl, blurDataURL } = post;
+  const { slug, title, description, publishedAt, imageUrl, imageBlurHash } =
+    post;
 
   return (
     <article className={'flex gap-4 md:gap-6'}>
@@ -22,7 +23,7 @@ export function SeriesPost({ post }: Props) {
           priority
           fill
           placeholder='blur'
-          blurDataURL={blurDataURL}
+          blurDataURL={imageBlurHash}
           className={'object-cover'}
         />
       </section>

@@ -8,11 +8,11 @@ export type Post = {
   publishedAt: string;
   description: string;
   imageUrl: string;
-  blurDataURL: string;
+  imageBlurHash: string;
   notionUrl: string;
   author: Author;
   tags: PostTag[];
-  series: Series[];
+  series?: Series;
   seriesOrder: number;
   isRecommended: boolean;
 

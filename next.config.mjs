@@ -4,7 +4,7 @@ import withPlaiceholder from '@plaiceholder/next';
 const nextConfig = {
   transpilePackages: ['@plaiceholder/ui'],
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com', 'cdn.sanity.io'],
   },
 };
 

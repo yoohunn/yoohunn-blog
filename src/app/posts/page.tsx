@@ -16,9 +16,3 @@ export default async function PostsPage() {
     </main>
   );
 }
-
-/*
- * 1. limit, page를 전달해서 posts를 가져온다.
- * 2. start, end 두가지 인자를 받아서 쿼리할 수 있는 쿼리문을 만든다.
- * 3. Pagination 컴포넌트를 만들어서 UI 구현하기
- * **/

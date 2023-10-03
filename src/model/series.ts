@@ -3,6 +3,7 @@ export type Series = {
   slug: string;
   title: string;
   description: string | null;
-  imageUrl: string;
   count: number;
+  imageUrl: string;
+  imageBlurHash: string;
 };

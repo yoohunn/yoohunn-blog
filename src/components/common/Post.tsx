@@ -7,10 +7,11 @@ interface Props {
 }
 
 export function Post({ post }: Props) {
-  const { slug, title, description, publishedAt, imageUrl, blurDataURL } = post;
+  const { slug, title, description, publishedAt, imageUrl, imageBlurHash } =
+    post;
 
   return (
-    <Link href={`/post/${slug}`}>
+    <Link href={`/post/${slug}`} className='w-full'>
       <article className='@container'>
         <div className='@post-md:flex @post-md:gap-6'>
           <section
@@ -25,7 +26,7 @@ export function Post({ post }: Props) {
               priority
               fill
               placeholder='blur'
-              blurDataURL={blurDataURL}
+              blurDataURL={imageBlurHash}
               className={'object-cover rounded-2xl'}
             />
           </section>

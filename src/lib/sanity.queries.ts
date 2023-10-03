@@ -11,7 +11,8 @@ const seriesFields = groq`
   "slug": slug.current,
   title,
   description,
-  imageUrl,
+  "imageUrl": image.asset->url,
+  "imageBlurHash": image.asset->metadata.lqip,
   "count": count(*[_type == "post" && references(^._id)])
 `;
 
@@ -21,12 +22,12 @@ const postFields = groq`
   title,
   publishedAt,
   description,
-  imageUrl,
   notionUrl,
-  blurDataURL,
+  "imageUrl": image.asset->url,
+  "imageBlurHash": image.asset->metadata.lqip,
   "author": author->{name, image, "slug": slug.current},
   tags[]->{${tagFields}},
-  series[]->{${seriesFields}},
+  series->{${seriesFields}},
   seriesOrder,
   isRecommended,
 `;
@@ -47,7 +48,7 @@ count(*[_type == 'post'])
 `;
 
 export const postsBySeriesQuery = groq`
-*[_type == "post" && $slug in series[]->slug.current] | order(publishedAt desc){
+*[_type == "post" && $slug in series->slug.current] | order(publishedAt desc){
   ${postFields}
 }
 `;
