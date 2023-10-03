@@ -98,9 +98,10 @@ export default async function PostPage({ params }: Props) {
 
       <NotionPage recordMap={recordMap} />
 
-      <div className={`w-full px-4 ${maxWidthClass}`}>
-        <hr className='mb-10' />
-        <section className='mb-20 flex-row-center gap-4'>
+      <div className={`mt-10 px-4 w-full ${maxWidthClass}`}>
+        <section
+          className={`pt-6 pb-8 md:pt-10 md:pb-14 flex-row-center gap-4 border-t`}
+        >
           <div className='w-12 h-12 rounded-full border' />
           <div>
             <p className='md:text-lg font-medium text-gray-700 mb-0.5 md:mb-1'>
@@ -122,12 +123,12 @@ export default async function PostPage({ params }: Props) {
         />
       )}
 
-      <section className='mb-10 flex justify-between'>
+      <section className='my-10 flex justify-between'>
         <Link
           href='/'
-          className='flex-center gap-1 py-3 md:text-lg font-medium rounded-lg pr-6'
+          className='flex-center px-5 py-3 md:px-7 md:py-4 md:text-lg font-medium rounded-full bg-gray-50
+          transform duration-100 hover:bg-gray-100'
         >
-          <ChevronLeftIcon className='w-4 h-4 md:w-5 md:h-5 text-gray-600 hover:bg-gray-100' />
           홈으로
         </Link>
       </section>

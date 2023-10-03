@@ -30,6 +30,10 @@
   @apply md:font-[17px]
 }
 
+.notion-list {
+  width: 100%;
+}
+
 .notion-h {
   margin-bottom: 10px;
 }
