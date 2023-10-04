@@ -10,8 +10,8 @@ export function BookShape() {
       transform='scale()'
     >
       <clipPath id={bookShapeId}>
-        <rect width='50%' height='100%' rx='20' fill='#D9D9D9' />
-        <rect x='49.9%' width='50%' height='100%' rx='20' fill='#D9D9D9' />
+        <rect width='50%' height='100%' rx='20' fill='transparent' />
+        <rect x='49.9%' width='50%' height='100%' rx='20' fill='transparent' />
       </clipPath>
     </svg>
   );

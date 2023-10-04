@@ -7,7 +7,7 @@ import {
 } from '@/lib/sanity.fields';
 
 export const postsRecommendedQuery = groq`
-*[_type == "post"] | order(publishedAt desc) [0...3]{
+*[_type == "post" && isRecommended ] | order(publishedAt desc) [0...3]{
   ${postFields}
 }
 `;
@@ -74,6 +74,12 @@ export const postTagsQuery = groq`
 
 export const seriesQuery = groq`
 *[_type == "series"]{
+  ${seriesFields}
+}
+`;
+
+export const seriesRecommandedQuery = groq`
+*[_type == "series" && isRecommended]{
   ${seriesFields}
 }
 `;

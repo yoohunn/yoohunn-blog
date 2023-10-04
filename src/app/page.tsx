@@ -1,9 +1,15 @@
 import { getPostsLatest, getPostsRecommended } from '@/services/posts';
-import { Greeting, WithDimmerMoreLink } from '@/components/pages/home';
+import {
+  Greeting,
+  RecommandSeries,
+  WithDimmerMoreLink,
+} from '@/components/pages/home';
 import { Hr, Posts } from '@/components/common';
+import { getSeriesRecommanded } from '@/services/series';
 
 export default async function Home() {
-  const [recommended, latest] = await Promise.all([
+  const [series, recommended, latest] = await Promise.all([
+    getSeriesRecommanded(),
     getPostsRecommended(),
     getPostsLatest(),
   ]);
@@ -17,6 +23,8 @@ export default async function Home() {
       />
 
       <Hr />
+
+      <RecommandSeries series={series} />
 
       <Posts title='추천 포스트' posts={recommended} />
 

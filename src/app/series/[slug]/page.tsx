@@ -45,7 +45,7 @@ export default async function SeriesPage({ params }: Props) {
       <ul className='mb-8 flex flex-col gap-4 md:gap-12'>
         {posts.map((post) => (
           <li key={post.id}>
-            <Link href={`/post/${post.slug}?series=${series.slug}`}>
+            <Link href={`/post/${post.slug}`}>
               <SeriesPost post={post} />
             </Link>
           </li>

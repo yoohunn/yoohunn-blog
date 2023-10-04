@@ -1,11 +1,8 @@
 import type { FilteredResponseQueryOptions } from 'next-sanity';
 
-import type { Post, PostDetail } from '@/model/posts';
+import type { Post } from '@/model/posts';
 import { client } from '@/lib/sanity.client';
 import {
-  postBySlugQuery,
-  postNextOfSeriesQuery,
-  postPrevOfSeriesQuery,
   postsBySeriesQuery,
   postsByTagsQuery,
   postsPaginatedQuery,
@@ -13,7 +10,6 @@ import {
   postsTotalCountQuery,
 } from '@/lib/sanity.queries';
 import { PER_PAGE } from '@/constants/posts';
-import { getNotionPage } from '@/lib/notion';
 
 const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };
 

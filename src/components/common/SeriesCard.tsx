@@ -26,8 +26,8 @@ export async function SeriesCard({
       <Image
         src={imageUrl}
         alt='post-thumbnail'
-        // placeholder='blur'
-        // blurDataURL={blurDataURL}
+        placeholder='blur'
+        blurDataURL={blurDataURL}
         fill
         className='object-cover'
         priority
