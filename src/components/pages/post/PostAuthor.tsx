@@ -1,7 +1,7 @@
-import { Post } from '@/model/posts';
+import { PostDetail } from '@/model/posts';
 
 interface Props {
-  author: Post['author'];
+  author: PostDetail['author'];
 }
 
 export function PostAuthor({ author }: Props) {

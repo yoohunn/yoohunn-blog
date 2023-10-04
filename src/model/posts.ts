@@ -9,14 +9,18 @@ export type Post = {
   description: string;
   imageUrl: string;
   blurDataURL: string;
+  series?: Series;
+};
+
+export type PostDetail = Post & {
   notionUrl: string;
   author: Author;
   tags: PostTag[];
-  series?: Series;
   seriesOrder: number;
   isRecommended: boolean;
-
   notionRecordMap?: any;
+  next: Post | null;
+  prev: Post | null;
 };
 
 export type Author = {

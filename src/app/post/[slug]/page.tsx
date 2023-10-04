@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { getPostBySlug, getPostsRecommended } from '@/services/posts';
-import { getNotionPage } from '@/lib/notion';
+import { getPostsRecommended } from '@/services/posts';
+import { getPostBySlug, getPostDetailBySlug } from '@/services/post';
 import { Hr, NotionPage, PostTags } from '@/components/common';
 import { PostNav, RelatedSeries } from '@/components/pages/post';
 
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const maxWidthClass = 'max-w-[56.25rem]';
 
 export default async function PostPage({ params }: Props) {
-  const post = await getPostBySlug(params.slug);
+  const post = await getPostDetailBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -53,15 +53,15 @@ export default async function PostPage({ params }: Props) {
   const {
     title,
     imageUrl,
-    notionUrl,
     tags,
     blurDataURL,
     series,
     publishedAt,
     author,
+    notionRecordMap,
+    prev,
+    next,
   } = post;
-
-  const recordMap = await getNotionPage(notionUrl);
 
   return (
     <main className='flex-col-center pt-12 mx-auto'>
@@ -102,7 +102,7 @@ export default async function PostPage({ params }: Props) {
 
       <Hr />
 
-      <NotionPage recordMap={recordMap} />
+      <NotionPage recordMap={notionRecordMap} />
 
       <div className={`mt-10 px-4 w-full ${maxWidthClass}`}>
         <section
@@ -124,8 +124,8 @@ export default async function PostPage({ params }: Props) {
             title: series.title,
             slug: series.slug,
           }}
-          prev={post}
-          next={post}
+          prev={prev}
+          next={next}
         />
       )}
 
@@ -139,9 +139,15 @@ export default async function PostPage({ params }: Props) {
         </Link>
       </section>
 
-      <div className='block md:hidden'>
-        <PostNav nextHref={''} prevHref={''} seriesHref={''} />
-      </div>
+      {series && (
+        <div className='block md:hidden'>
+          <PostNav
+            nextHref={next ? `/post/${next.slug}` : ''}
+            prevHref={prev ? `/post/${prev.slug}` : ''}
+            seriesHref={`/series/${series.slug}`}
+          />
+        </div>
+      )}
     </main>
   );
 }

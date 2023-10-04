@@ -1,9 +1,11 @@
 import type { FilteredResponseQueryOptions } from 'next-sanity';
 
-import type { Post } from '@/model/posts';
+import type { Post, PostDetail } from '@/model/posts';
 import { client } from '@/lib/sanity.client';
 import {
   postBySlugQuery,
+  postNextOfSeriesQuery,
+  postPrevOfSeriesQuery,
   postsBySeriesQuery,
   postsByTagsQuery,
   postsPaginatedQuery,
@@ -11,7 +13,7 @@ import {
   postsTotalCountQuery,
 } from '@/lib/sanity.queries';
 import { PER_PAGE } from '@/constants/posts';
-import { Series } from '@/model/series';
+import { getNotionPage } from '@/lib/notion';
 
 const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };
 
@@ -53,8 +55,4 @@ export async function getPostsBySeries(slug: string) {
 
 export async function getPostsByTags(slugs: string[]) {
   return await client.fetch<Post[]>(postsByTagsQuery, { slugs }, options);
-}
-
-export async function getPostBySlug(slug: string) {
-  return await client.fetch<Post>(postBySlugQuery, { slug }, options);
 }

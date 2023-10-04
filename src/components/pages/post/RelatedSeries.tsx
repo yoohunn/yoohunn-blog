@@ -1,14 +1,14 @@
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 import type { Series } from '@/model/series';
-import type { Post as IPost } from '@/model/posts';
+import type { Post as IPost, PostDetail } from '@/model/posts';
 import { Post } from '@/components/common';
 import Link from 'next/link';
 
 interface Props {
   series: Pick<Series, 'title' | 'slug'>;
-  prev: IPost;
-  next: IPost;
+  prev: PostDetail['prev'];
+  next: PostDetail['next'];
 }
 
 export function RelatedSeries({ series, prev, next }: Props) {
@@ -38,14 +38,24 @@ export function RelatedSeries({ series, prev, next }: Props) {
 
         <ul className='flex flex-col-reverse md:flex-row gap-14 md:gap-20 lg:gap-40'>
           <li className='flex-1'>
-            <p className='flex-row-center text-gray-500 mb-2 mx-1.5'>이전글</p>
-            <Post post={prev} />
+            {prev && (
+              <>
+                <p className='flex-row-center text-gray-500 mb-2 mx-1.5'>
+                  이전글
+                </p>
+                <Post post={prev} />{' '}
+              </>
+            )}
           </li>
           <li className='flex-1'>
-            <p className='flex-row-center md:justify-end text-gray-500 mb-2 mx-1.5'>
-              다음글
-            </p>
-            <Post post={next} />
+            {next && (
+              <>
+                <p className='flex-row-center md:justify-end text-gray-500 mb-2 mx-1.5'>
+                  다음글
+                </p>
+                <Post post={next} />
+              </>
+            )}
           </li>
         </ul>
       </div>

@@ -28,12 +28,16 @@ export const postFields = groq`
   title,
   publishedAt,
   description,
-  notionUrl,
   "imageUrl": image.asset->url,
   "blurDataURL": image.asset->metadata.lqip,
-  "author": author->{${authorFields}},
-  tags[]->{${tagFields}},
   series->{${seriesFields}},
+`;
+
+export const postDetailFields = groq`
+  ...{${postFields}},
+  notionUrl,
   seriesOrder,
   isRecommended,
+  "author": author->{${authorFields}},
+  tags[]->{${tagFields}},
 `;

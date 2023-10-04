@@ -14,8 +14,8 @@ import {
 
 interface Props {
   seriesHref: string;
-  nextHref: string;
-  prevHref: string;
+  nextHref?: string;
+  prevHref?: string;
 }
 
 const SHOWING_HEIGHT = 200;
@@ -53,14 +53,18 @@ export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
           <WithTransition>
             <Popover.Panel>
               <div className={`${menuContainerClass} mb-2 space-y-4`}>
-                <Link href={nextHref} className={menuItemClass}>
-                  <ArrowRightCircleIcon className={iconClass} />
-                  다음글 보기
-                </Link>
-                <Link href={prevHref} className={menuItemClass}>
-                  <ArrowLeftCircleIcon className={iconClass} />
-                  이전글 보기
-                </Link>
+                {nextHref && (
+                  <Link href={nextHref} className={menuItemClass}>
+                    <ArrowRightCircleIcon className={iconClass} />
+                    다음글 보기
+                  </Link>
+                )}
+                {prevHref && (
+                  <Link href={prevHref} className={menuItemClass}>
+                    <ArrowLeftCircleIcon className={iconClass} />
+                    이전글 보기
+                  </Link>
+                )}
               </div>
               <Link
                 href={seriesHref}

@@ -1,5 +1,10 @@
 import { groq } from 'next-sanity';
-import { postFields, seriesFields, tagFields } from '@/lib/sanity.fields';
+import {
+  postDetailFields,
+  postFields,
+  seriesFields,
+  tagFields,
+} from '@/lib/sanity.fields';
 
 export const postsRecommendedQuery = groq`
 *[_type == "post"] | order(publishedAt desc) [0...3]{
@@ -17,7 +22,7 @@ count(*[_type == 'post'])
 `;
 
 export const postsBySeriesQuery = groq`
-*[_type == "post" && $slug in series->slug.current] | order(publishedAt desc){
+*[_type == "post" && series->slug.current == $slug ] | order(publishedAt desc){
   ${postFields}
 }
 `;
@@ -28,22 +33,36 @@ export const postsByTagsQuery = groq`
 }
 `;
 
-/* Better approach for Pagination in Sanity
- * 나는 ISR 페이지네이션을 사용해서 이 방법이 적합하지 않았지만 테스트해보니 좋았음... 못써서 아까운 코드
- * https://www.sanity.io/docs/paginating-with-groq#99e2366d34f5
- */
-// export const postsNextQuery = groq`
-// *[_type == "post" && (
-//   publishedAt > $lastPublishedAt
-//   || (publishedAt == $lastPublishedAt && _id > $lastId)
-// )] | order(publishedAt) [0...$limit]{
-//   ${postFields}
-// }
-// `;
-
 export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0]{
   ${postFields}
+}
+`;
+
+/* Better approach for Pagination in Sanity
+ * https://www.sanity.io/docs/paginating-with-groq#99e2366d34f5
+ */
+export const postNextOfSeriesQuery = groq`
+*[_type == "post" && series->slug.current == ^.series->slug.current  && (
+  publishedAt > ^.publishedAt
+  || (publishedAt == ^.publishedAt && _id > ^._id)
+)] | order(publishedAt)[0]{
+  ${postFields}
+}`;
+
+export const postPrevOfSeriesQuery = groq`
+*[_type == "post" && series->slug.current == ^.series->slug.current  && (
+  publishedAt < ^.publishedAt
+  || (publishedAt == ^.publishedAt && _id < ^._id)
+)] | order(publishedAt desc)[0]{
+  ${postFields}
+}`;
+
+export const postDetailBySlugQuery = groq`
+*[_type == "post" && slug.current == $slug][0]{
+  ...{${postDetailFields}},
+  "next": ${postNextOfSeriesQuery},
+  "prev": ${postPrevOfSeriesQuery},
 }
 `;
 
