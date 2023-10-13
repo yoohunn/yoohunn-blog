@@ -87,11 +87,12 @@ export default async function PostPage({ params }: Props) {
           className={`mb-12 md:mb-16 relative w-full ${maxWidthClass} aspect-[7/4] rounded-3xl overflow-hidden`}
         >
           <Image
-            src={imageUrl}
+            src={blurDataURL}
             alt='post-thumbnail'
             placeholder='blur'
-            blurDataURL={blurDataURL}
-            fill
+            blurDataURL={imageUrl}
+            width={900}
+            height={514}
             className='object-cover'
             priority
           />

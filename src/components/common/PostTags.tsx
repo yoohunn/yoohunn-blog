@@ -17,7 +17,7 @@ export function PostTags({ tags, currentSlug, className }: Props) {
             href={`/tag/${slug}`}
             className={`py-2 px-4 flex-center text-sm md:text-base
             rounded-full text-gray-700 transform duration-100
-            hover:bg-blue-50 hover:text-blue-900 hover:ring hover:ring-blue-50 ${
+            hover:bg-blue-50 hover:text-blue-500 hover:ring hover:ring-blue-50 ${
               currentSlug === slug ? 'bg-blue-50' : 'bg-gray-50'
             }`}
           >

@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useScroll } from 'framer-motion';
 import { Popover, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
@@ -21,27 +20,21 @@ interface Props {
 const SHOWING_HEIGHT = 200;
 
 export function PostNav({ seriesHref, nextHref, prevHref }: Props) {
-  const { scrollY } = useScroll();
-
   const [isShowing, setIsShowing] = useState(false);
 
+  const onScroll = () => {
+    const scrollHeight = window.scrollY;
+    const shouldShow = scrollHeight > SHOWING_HEIGHT;
+
+    if (shouldShow !== isShowing) {
+      setIsShowing(shouldShow);
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const scrollHeight = scrollY.get();
-
-      const isValidShowing =
-        (scrollHeight <= SHOWING_HEIGHT && !isShowing) ||
-        (scrollHeight > SHOWING_HEIGHT && isShowing);
-
-      if (isValidShowing) {
-        return;
-      }
-
-      scrollHeight > SHOWING_HEIGHT //
-        ? setIsShowing(true)
-        : setIsShowing(false);
-    });
-  }, [isShowing]);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isShowing, onScroll]);
 
   return (
     <Popover

@@ -20,7 +20,7 @@ body {
   }
 
   .h2 {
-    @apply text-xl font-semibold md:text-[26px];
+    @apply text-xl font-semibold leading-[130%] md:text-[26px];
   }
 
   .max-container {

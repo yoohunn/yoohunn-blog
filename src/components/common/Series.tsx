@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import type { Series } from '@/model/series';
-import { SeriesCard } from '@/components/common/SeriesCard';
+import { SeriesCard } from '@/components/pages/series';
 
 interface Props {
   series: Series[];

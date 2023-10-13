@@ -1,8 +1,6 @@
-import Link from 'next/link';
-
 import { getPostsBySeries } from '@/services/posts';
 import { getSeries } from '@/services/series';
-import { SeriesPost, SeriesSorter, SeriesCard } from '@/components/common';
+import { SeriesCard, SortedSeriesPosts } from '@/components/pages/series';
 
 interface Props {
   params: { slug: string };
@@ -24,33 +22,19 @@ export default async function SeriesPage({ params }: Props) {
     return <p>no post in series</p>;
   }
 
-  const { title, imageUrl, count } = series;
+  const { title, imageUrl, count, blurDataURL, slug } = series;
 
   return (
     <main className='max-container'>
       <h1 className='h1 text-center'>{title}</h1>
       <SeriesCard
         imageUrl={imageUrl}
+        blurDataURL={blurDataURL}
         firstPostHref={`/post/${posts[0].slug}?series=${series.slug}`}
         className='mb-10 md:mb-20'
       />
 
-      <section className='flex justify-between mb-4 md:mb-6 text-sm md:text-base'>
-        <div className='text-gray-600'>총 {count}개</div>
-        <SeriesSorter />
-      </section>
-
-      <hr className='mb-8 md:mb-[60px]' />
-
-      <ul className='mb-8 flex flex-col gap-4 md:gap-12'>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link href={`/post/${post.slug}`}>
-              <SeriesPost post={post} />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <SortedSeriesPosts posts={posts} count={count} slug={slug} />
 
       {/*<section>Other series</section>*/}
     </main>

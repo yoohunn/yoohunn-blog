@@ -6,7 +6,7 @@ import { BookShape, bookShapeId } from '@/components/icon/BookShape';
 
 interface Props extends WithClassName {
   imageUrl: string;
-  blurDataURL?: string;
+  blurDataURL: string;
   count?: number;
   firstPostHref?: string;
 }
@@ -40,7 +40,7 @@ export async function SeriesCard({
   );
 }
 
-function BookIndex({ count }: { count: number }) {
+export function BookIndex({ count }: { count: number }) {
   return (
     <div
       className='absolute top-6 -right-1 flex

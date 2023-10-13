@@ -7,3 +7,6 @@ export type Series = {
   imageUrl: string;
   blurDataURL: string;
 };
+
+export const seriesSorter = ['LASTEST', 'OLDEST'] as const;
+export type SeriesSorter = (typeof seriesSorter)[number];
