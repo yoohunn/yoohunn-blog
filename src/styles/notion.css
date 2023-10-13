@@ -4,8 +4,8 @@
 
 :root {
   --notion-max-width: 768px;
-  --notion-gray: hsl(220, 9%, 50%);
 
+  --notion-gray: hsl(220, 9%, 50%);
   --notion-red_background: hsl(0, 74%, 96%);
   --notion-pink_background: hsl(326, 49%, 96%);
   --notion-blue_background: hsl(198, 42%, 95%);
@@ -26,8 +26,8 @@
   @apply text-gray-700
 }
 
-.notion-text {
-  @apply md:font-[17px]
+.notion {
+  font-size: 17px;
 }
 
 .notion-list {
@@ -38,7 +38,7 @@
   margin-bottom: 10px;
 }
 
-.notion-h-title {
+h3 .notion-h-title {
   @apply text-2xl md:text-3xl
 }
 
@@ -66,14 +66,45 @@
   border-radius: 3px;
 }
 
-.notion-red_background .notion-inline-code,
-.notion-pink_background .notion-inline-code,
-.notion-blue_background .notion-inline-code,
-.notion-purple_background .notion-inline-code,
-.notion-teal_background .notion-inline-code,
-.notion-yellow_background .notion-inline-code,
-.notion-orange_background .notion-inline-code,
-.notion-brown_background .notion-inline-code,
-.notion-gray_background .notion-inline-code {
+:where(
+.notion-red_background,
+.notion-pink_background,
+.notion-blue_background,
+.notion-purple_background,
+.notion-teal_background,
+.notion-yellow_background,
+.notion-orange_background,
+.notion-brown_background,
+.notion-gray_background
+) .notion-inline-code {
   background: transparent;
 }
+
+
+@media (max-width: 768px) {
+  .notion {
+    font-size: 1rem;
+  }
+
+  .notion-callout {
+    padding: 16px 8px 16px 4px;
+  }
+  .notion-callout-text {
+    width: 90%;
+  }
+  .notion-callout-text .notion-asset-wrapper img {
+    width: 90%;
+  }
+  .notion-callout-text .notion-list {
+    padding-inline-start: 0;
+  }
+
+  .notion-list .notion-list:has(div) {
+    padding-left: 0;
+  }
+  .notion-list-disc {
+    padding-inline-start: 1.4rem;
+  }
+
+}
+
