@@ -27,4 +27,5 @@ export type Author = {
   name: string;
   slug: string;
   imageUrl: string;
+  description: string;
 };

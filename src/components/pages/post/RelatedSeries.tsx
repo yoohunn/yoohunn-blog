@@ -1,9 +1,9 @@
+import Link from 'next/link';
 import { ChevronRightIcon } from '@heroicons/react/24/solid';
 
 import type { Series } from '@/model/series';
-import type { Post as IPost, PostDetail } from '@/model/posts';
+import type { PostDetail } from '@/model/posts';
 import { Post } from '@/components/common';
-import Link from 'next/link';
 
 interface Props {
   series: Pick<Series, 'title' | 'slug'>;
@@ -38,24 +38,16 @@ export function RelatedSeries({ series, prev, next }: Props) {
 
         <ul className='flex flex-col-reverse md:flex-row gap-14 md:gap-20 lg:gap-40'>
           <li className='flex-1'>
-            {prev && (
-              <>
-                <p className='flex-row-center text-gray-500 mb-2 mx-1.5'>
-                  이전글
-                </p>
-                <Post post={prev} />{' '}
-              </>
-            )}
+            <p className='flex-row-center text-gray-500 mb-2 mx-1.5'>
+              {prev ? '이전글' : '시리즈의 첫번째 글 입니다.'}
+            </p>
+            {prev && <Post post={prev} />}
           </li>
           <li className='flex-1'>
-            {next && (
-              <>
-                <p className='flex-row-center md:justify-end text-gray-500 mb-2 mx-1.5'>
-                  다음글
-                </p>
-                <Post post={next} />
-              </>
-            )}
+            <p className='flex-row-center md:justify-end text-gray-500 mb-2 mx-1.5'>
+              {next ? '다음글' : '시리즈의 마지막 글 입니다.'}
+            </p>
+            {next && <Post post={next} />}
           </li>
         </ul>
       </div>

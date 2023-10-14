@@ -87,10 +87,10 @@ export default async function PostPage({ params }: Props) {
           className={`mb-12 md:mb-16 relative w-full ${maxWidthClass} aspect-[7/4] rounded-3xl overflow-hidden`}
         >
           <Image
-            src={blurDataURL}
+            src={imageUrl}
             alt='post-thumbnail'
             placeholder='blur'
-            blurDataURL={imageUrl}
+            blurDataURL={blurDataURL}
             width={900}
             height={514}
             className='object-cover'
@@ -112,9 +112,11 @@ export default async function PostPage({ params }: Props) {
           <div className='w-12 h-12 rounded-full border' />
           <div>
             <p className='md:text-lg font-medium text-gray-700 mb-0.5 md:mb-1'>
-              유현지
+              {author.name}
             </p>
-            <p className='text-xs md:text-sm text-gray-500'>안녕하세. 소개말</p>
+            <p className='text-xs md:text-sm text-gray-500'>
+              {author.description}
+            </p>
           </div>
         </section>
       </div>
