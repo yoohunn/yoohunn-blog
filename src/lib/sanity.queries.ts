@@ -67,13 +67,13 @@ export const postDetailBySlugQuery = groq`
 `;
 
 export const postTagsQuery = groq`
-*[_type == "tag"]{
+*[_type == "tag"]| order(_createdAt desc){
   ${tagFields}
 }
 `;
 
 export const seriesQuery = groq`
-*[_type == "series"]{
+*[_type == "series"] | order(_createdAt desc)| order(isRecommended desc){
   ${seriesFields}
 }
 `;

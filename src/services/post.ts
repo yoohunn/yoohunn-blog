@@ -1,8 +1,8 @@
 import type { FilteredResponseQueryOptions } from 'next-sanity';
 
 import type { Post, PostDetail } from '@/model/posts';
-import { client } from '@/lib/sanity.client';
 import { postBySlugQuery, postDetailBySlugQuery } from '@/lib/sanity.queries';
+import { client } from '@/lib/sanity.client';
 import { getNotionPage } from '@/lib/notion';
 
 const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };

@@ -11,7 +11,9 @@ import {
 } from '@/lib/sanity.queries';
 import { PER_PAGE } from '@/constants/posts';
 
-const options: FilteredResponseQueryOptions = { next: { revalidate: 60 * 10 } };
+export const options: FilteredResponseQueryOptions = {
+  next: { revalidate: 60 * 10 },
+};
 
 export async function getPostsRecommended() {
   return await client.fetch<Post[]>(postsRecommendedQuery, {}, options);

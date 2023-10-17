@@ -18,6 +18,7 @@ export const seriesFields = groq`
 
 export const authorFields = groq`
   name,
+  description,
   "slug": slug.current,
   "imageUrl": image.asset->url,
 `;
