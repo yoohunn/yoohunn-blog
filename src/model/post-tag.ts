@@ -1,1 +1,1 @@
-export type PostTag = { slug: string; name: string };
+export type PostTag = { slug: string; name: string; questions?: string[] };

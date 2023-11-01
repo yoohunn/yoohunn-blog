@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { getPostTags } from '@/services/post-tag';
 import { getPostsByTags } from '@/services/posts';
 import { Posts, PostTags } from '@/components/common';
+import { Questions } from '@/components/pages/tags/Questions';
 
 interface Props {
   params: {
@@ -37,10 +38,11 @@ export default async function PostsByTagPage({ params }: Props) {
       <h1 className='h1'>{tag?.name}</h1>
       <PostTags
         tags={tags}
-        className='mb-16 !justify-start'
+        className='mb-4 !justify-start'
         currentSlug={params.slug}
       />
-      <Posts posts={posts} />
+      <Questions questions={tag.questions} />
+      <Posts posts={posts} className='mt-16' />
     </main>
   );
 }

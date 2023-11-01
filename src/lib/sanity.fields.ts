@@ -2,6 +2,7 @@ import { groq } from 'next-sanity';
 
 export const tagFields = groq`
   name,
+  questions,
   "slug": slug.current,
   "count": count(*[_type == "post" && references(^._id)])
 `;
