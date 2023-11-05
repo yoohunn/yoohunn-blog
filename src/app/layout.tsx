@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/react';
 
 import { montserrat, poppins } from '@/app/fonts';
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
