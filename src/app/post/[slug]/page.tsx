@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getPostsRecommended } from '@/services/posts';
 import { getPostBySlug, getPostDetailBySlug } from '@/services/post';
-import { Hr, NotionPage, PostTags } from '@/components/common';
-import { PostNav, RelatedSeries } from '@/components/pages/post';
+import { Hr, NotionPage, PostImage, PostTags } from '@/components/common';
+import { QuestionsModal, RelatedSeries } from '@/components/pages/post';
 
 interface Props {
   params: { slug: string };
@@ -63,6 +62,9 @@ export default async function PostPage({ params }: Props) {
     next,
   } = post;
 
+  const tagsWithQuestions = tags.filter((tag) => tag.questions);
+  const hasQuestions = tagsWithQuestions.length !== 0;
+
   return (
     <main className='flex-col-center pt-12 mx-auto'>
       <section className='px-4 w-full flex-col-center text-center'>
@@ -77,27 +79,19 @@ export default async function PostPage({ params }: Props) {
         <div className='mb-10 md:text-lg text-gray-500 space-x-1'>
           {series && (
             <>
-              <span>{series.title}</span>
+              <Link href={`/series/${series.slug}`}>
+                <span className='hover:text-[#3864c1]'>{series.title}</span>
+              </Link>
               <span>·</span>
             </>
           )}
           <span>{publishedAt}</span>
         </div>
-        <section
-          className={`mb-12 md:mb-16 relative w-full ${maxWidthClass} aspect-[7/4] rounded-3xl overflow-hidden`}
-        >
-          <Image
-            src={imageUrl}
-            alt='post-thumbnail'
-            placeholder='blur'
-            blurDataURL={blurDataURL}
-            width={900}
-            height={514}
-            className='object-cover'
-            priority
-          />
-        </section>
-
+        <PostImage
+          imageUrl={imageUrl}
+          blurDataURL={blurDataURL}
+          className={`mb-12 md:mb-16 ${maxWidthClass}`}
+        />
         <PostTags tags={tags} className='mb-12 justify-center' />
       </section>
 
@@ -142,15 +136,7 @@ export default async function PostPage({ params }: Props) {
         </Link>
       </section>
 
-      {series && (
-        <div className='block md:hidden'>
-          <PostNav
-            nextHref={next ? `/post/${next.slug}` : ''}
-            prevHref={prev ? `/post/${prev.slug}` : ''}
-            seriesHref={`/series/${series.slug}`}
-          />
-        </div>
-      )}
+      {hasQuestions && <QuestionsModal tags={tagsWithQuestions} />}
     </main>
   );
 }

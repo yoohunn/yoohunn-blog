@@ -79,7 +79,7 @@ export const seriesQuery = groq`
 `;
 
 export const seriesRecommandedQuery = groq`
-*[_type == "series" && isRecommended]{
+*[_type == "series" && isRecommended] [0...3]{
   ${seriesFields}
 }
 `;

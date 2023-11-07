@@ -1,8 +1,8 @@
-import { PostTag } from '@/model/post-tag';
-import Link from 'next/link';
+import type { PostTag as IPostTag } from '@/model/post-tag';
+import { PostTag } from '@/components/common/PostTag';
 
 interface Props extends WithClassName {
-  tags: PostTag[];
+  tags: IPostTag[];
   currentSlug?: string;
 }
 
@@ -11,18 +11,9 @@ export function PostTags({ tags, currentSlug, className }: Props) {
     <ul
       className={`flex flex-wrap items-center justify-center gap-2 ${className}`}
     >
-      {tags.map(({ slug, name }) => (
-        <li key={slug}>
-          <Link
-            href={`/tag/${slug}`}
-            className={`py-2 px-4 flex-center text-sm md:text-base
-            rounded-full text-gray-700 transform duration-100
-            hover:bg-blue-50 hover:text-[#3864c1] hover:ring hover:ring-blue-50 ${
-              currentSlug === slug ? 'bg-blue-50' : 'bg-gray-50'
-            }`}
-          >
-            {name}
-          </Link>
+      {tags.map((tag) => (
+        <li key={tag.slug}>
+          <PostTag tag={tag} isActive={currentSlug === tag.slug} />
         </li>
       ))}
     </ul>
