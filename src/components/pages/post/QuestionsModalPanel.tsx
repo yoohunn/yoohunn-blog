@@ -3,7 +3,6 @@
 import { Popover, Transition } from '@headlessui/react';
 
 import type { PostTag as IPostTag } from '@/model/post-tag';
-import { PostTag } from '@/components/common';
 
 export function QuestionsModalPanel({ tags }: { tags: IPostTag[] }) {
   return (
@@ -13,7 +12,7 @@ export function QuestionsModalPanel({ tags }: { tags: IPostTag[] }) {
           'w-[calc(100vw-32px)] max-w-[22rem] ml-auto space-y-4 md:space-y-6 bg-white border ring-4 ring-white rounded p-4'
         }
       >
-        {[...tags, ...tags].map((tag) => (
+        {tags.map((tag) => (
           <li key={tag.slug}>
             <span
               className={
