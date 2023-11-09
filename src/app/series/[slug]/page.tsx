@@ -1,5 +1,7 @@
+import { Metadata } from 'next';
+
 import { getPostsBySeries } from '@/services/posts';
-import { getSeries } from '@/services/series';
+import { getSeries, getSeriesBySlug } from '@/services/series';
 import { SeriesCard, SortedSeriesPosts } from '@/components/pages/series';
 
 interface Props {
@@ -12,6 +14,27 @@ export async function generateStaticParams() {
   return series.map((item) => ({
     slug: item.slug,
   }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const post = await getSeriesBySlug(slug);
+  if (!post) {
+    return {};
+  }
+
+  const { title, description, imageUrl } = post;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description: '',
+      images: [imageUrl],
+    },
+  };
 }
 
 export default async function SeriesPage({ params }: Props) {

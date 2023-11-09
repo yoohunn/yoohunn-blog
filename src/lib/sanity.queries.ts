@@ -72,8 +72,20 @@ export const postTagsQuery = groq`
 }
 `;
 
+export const postTagBySlugQuery = groq`
+*[_type == "tag" && slug.current == $slug]| order(_createdAt desc)[0]{
+  ${tagFields}
+}
+`;
+
 export const seriesQuery = groq`
 *[_type == "series"] | order(_createdAt desc)| order(isRecommended desc){
+  ${seriesFields}
+}
+`;
+
+export const seriesBySlugQuery = groq`
+*[_type == "series" && slug.current == $slug] | order(_createdAt desc)| order(isRecommended desc)[0]{
   ${seriesFields}
 }
 `;

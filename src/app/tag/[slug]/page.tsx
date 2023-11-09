@@ -1,6 +1,7 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getPostTags } from '@/services/post-tag';
+import { getPostTagBySlug, getPostTags } from '@/services/post-tag';
 import { getPostsByTags } from '@/services/posts';
 import { Posts, PostTags } from '@/components/common';
 import { Questions } from '@/components/pages/tags/Questions';
@@ -19,6 +20,24 @@ export async function generateStaticParams() {
   return tags.map((tag) => ({
     slug: tag.slug,
   }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const tag = await getPostTagBySlug(slug);
+  if (!tag) {
+    return {};
+  }
+
+  const { name: title } = tag;
+
+  return {
+    title,
+    openGraph: {
+      title,
+    },
+  };
 }
 
 export default async function PostsByTagPage({ params }: Props) {
