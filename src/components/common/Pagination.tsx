@@ -1,10 +1,14 @@
+'use client';
+
+import { useSelectedLayoutSegment } from 'next/navigation';
+
 import { PER_PAGE } from '@/constants/posts';
 import { usePagination } from '@/hooks/usePagination';
 import { PaginationItem } from '@/components/common/PaginationItem';
 
 interface Props {
   totalItems: number;
-  renderPageLink: (page: number) => string;
+  pageHref: string;
   itemsPerPage?: number;
 }
 
@@ -12,11 +16,15 @@ export const dotts = '...';
 
 export function Pagination({
   totalItems,
+  pageHref,
   itemsPerPage = PER_PAGE,
-  renderPageLink,
 }: Props) {
-  const currentPage = 1;
+  const segment = useSelectedLayoutSegment();
+  const currentPage = segment ? +segment : 1;
+
   const pages = usePagination(totalItems, currentPage, itemsPerPage);
+
+  const renderPageLink = (page: number) => `${pageHref}/${page}`;
 
   return (
     <div className='flex items-center justify-center my-8'>

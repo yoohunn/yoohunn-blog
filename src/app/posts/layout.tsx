@@ -13,10 +13,7 @@ export default async function PostsPaginatedLayout({ children }: WithChildren) {
       <h1 className='h1'>Posts</h1>
       <PostTags tags={tags} className='mb-16 !justify-start' />
       {children}
-      <Pagination
-        totalItems={totalCount}
-        renderPageLink={(page: number) => `/posts/${page}`}
-      />
+      <Pagination totalItems={totalCount} pageHref={'/posts'} />
     </main>
   );
 }
