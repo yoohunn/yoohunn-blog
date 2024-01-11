@@ -12,8 +12,6 @@ interface Props {
   };
 }
 
-export const dynamicParams = false;
-
 export async function generateStaticParams() {
   const tags = await getPostTags();
 
